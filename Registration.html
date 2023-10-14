@@ -105,7 +105,7 @@
   </style>
 <body>
 <div id="main">
-    <div ng-show="">
+    <div ng-show="shownameinfo">
       <div id="Logo"><label style="font-size: 25px; color: #4285f4;">S</label><label style="font-size: 23px; color: #ea4335;">k</label><label style="font-size: 23px; color: #fbbc05;">y</label ><label style="font-size: 25px;color: #4285f4;">S</label><label style="font-size: 23px; color: #34a853;">y</label><label style="font-size: 23px;color: #fbbc05;">n</label><label style="font-size: 23px;color: #ea4335;">c</label></div>
       <div id="Name"><label style="font-size: 22px;">Create a SkySync Account</label></div>
       <div id="Enter"><label style="font-size: 18px; ">Enter Your Name</label></div>
@@ -115,10 +115,10 @@
       <div id="LName" class="input-group mb-3">
         <input type="text" class="form-control" placeholder="Last name (optional)" aria-label="Lastname" aria-describedby="basic-addon1">
       </div>
-      <div id="button"><button type="button" class="btn btn-primary">Next</button></div>
+      <div id="button"><button type="button" class="btn btn-primary" ng-click="next1()">Next</button></div>
       <div id="Login"><label style="font-size: 18px; ">Already have an account. Click here <a ui-sref="Login">Login</a></label></div>
     </div>
-    <!-- <div ng-show="">
+    <div ng-show="showbasicinfo">
         <div id="Logo1">
             <label style="font-size: 25px; color: #4285f4;">S</label>
             <label style="font-size: 23px; color: #ea4335;">k</label>
@@ -164,10 +164,10 @@
         </select>
         </div>
         <div id="button">
-        <button type="button" class="btn btn-primary">Next</button>
+        <button type="button" class="btn btn-primary" ng-click="next2()">Next</button>
         </div>
-    </div> -->
-    <!-- <div ng-show="">
+    </div>
+    <div ng-show="showphoneinfo">
       <div id="Logo"><label style="font-size: 25px; color: #4285f4;">S</label><label style="font-size: 23px; color: #ea4335;">k</label><label style="font-size: 23px; color: #fbbc05;">y</label ><label style="font-size: 25px;color: #4285f4;">S</label><label style="font-size: 23px; color: #34a853;">y</label><label style="font-size: 23px;color: #fbbc05;">n</label><label style="font-size: 23px;color: #ea4335;">c</label></div>
       <div id="Gmail"><label style="font-size: 22px;">Use Your Gmail & Phone No.</label></div>
       <div id="Email"><label style="font-size: 18px; ">Enter Your Gmail And Phone No. </label></div>
@@ -177,9 +177,9 @@
       <div id="LName" class="input-group mb-3">
         <input  class="form-control" placeholder="Phone No." aria-label="Phone" aria-describedby="basic-addon1">
       </div>
-      <div id="button"><button type="button" class="btn btn-primary">Next</button></div>
-    </div> -->
-     <!-- <div ng-show="">
+      <div id="button"><button type="button" class="btn btn-primary" ng-click="next3()">Next</button></div>
+    </div>
+     <div ng-show="showpasswordinfo">
       <div id="Logo"><label style="font-size: 25px; color: #4285f4;">S</label><label style="font-size: 23px; color: #ea4335;">k</label><label style="font-size: 23px; color: #fbbc05;">y</label ><label style="font-size: 25px;color: #4285f4;">S</label><label style="font-size: 23px; color: #34a853;">y</label><label style="font-size: 23px;color: #fbbc05;">n</label><label style="font-size: 23px;color: #ea4335;">c</label></div>
       <div id="Name"><label style="font-size: 22px;">Create a Strong Password</label></div>
       <div id="pswd"><label style="font-size: 18px; ">Enter Your Password</label></div>
@@ -190,8 +190,8 @@
         <input type="password" class="form-control" placeholder="Confirm Password" aria-label="Confirm Password" aria-describedby="basic-addon1">
       </div>
       <div style="margin-left: 9%; margin-top: 3%;"><input  type="checkbox">  Show Password</div>
-      <div id="Register"><button type="button" class="btn btn-primary">Register</button></div>
-    </div> -->
+      <div id="Register"><button type="button" class="btn btn-primary" ng-click="drive()">Register</button></div>
+    </div>
 </div>
 </body>
 </html>
