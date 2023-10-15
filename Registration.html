@@ -110,10 +110,10 @@
       <div id="Name"><label style="font-size: 22px;">Create a SkySync Account</label></div>
       <div id="Enter"><label style="font-size: 18px; ">Enter Your Name</label></div>
       <div id="FName" class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="First name" aria-label="Firstname" aria-describedby="basic-addon1">
+        <input type="text" class="form-control" placeholder="First name" aria-label="Firstname" aria-describedby="basic-addon1" ng-model="first_name">
       </div>
       <div id="LName" class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Last name (optional)" aria-label="Lastname" aria-describedby="basic-addon1">
+        <input type="text" class="form-control" placeholder="Last name (optional)" aria-label="Lastname" aria-describedby="basic-addon1" ng-model="last_name">
       </div>
       <div id="button"><button type="button" class="btn btn-primary" ng-click="next1()">Next</button></div>
       <div id="Login"><label style="font-size: 18px; ">Already have an account. Click here <a ui-sref="Login">Login</a></label></div>
@@ -138,29 +138,29 @@
             <div style="margin-top: 9%; margin-left: 9%;">
                 
                    <select id="monthDropdown" style="height: 55px;" class="form-control" >
-                    <option value="January">January</option>
-                    <option value="February">February</option>
-                    <option value="March">March</option>
-                    <option value="March">April</option>
-                    <option value="March">May</option>
-                    <option value="March">June</option>
-                    <option value="March">July</option>
-                    <option value="March">August</option>
-                    <option value="March">September</option>
-                    <option value="March">October</option>
-                    <option value="March">November</option>
-                    <option value="March">December</option>
+                    <option value="January" ng-model="month">January</option>
+                    <option value="February" ng-model="month">February</option>
+                    <option value="March" ng-model="month">March</option>
+                    <option value="April" ng-model="month">April</option>
+                    <option value="May" ng-model="month">May</option>
+                    <option value="June" ng-model="month">June</option>
+                    <option value="July" ng-model="month">July</option>
+                    <option value="August" ng-model="month">August</option>
+                    <option value="September" ng-model="month">September</option>
+                    <option value="October" ng-model="month">October</option>
+                    <option value="November" ng-model="month">November</option>
+                    <option value="December" ng-model="month">December</option>
                 </select>
             </div>
-            <input id="date" class="form-control" placeholder="Date" aria-label="Date" aria-describedby="basic-addon1">
-            <input id="year" class="form-control" placeholder="Year" aria-label="Year" aria-describedby="basic-addon1">
+            <input id="date" class="form-control" placeholder="Date" aria-label="Date" aria-describedby="basic-addon1" ng-model="date">
+            <input id="year" class="form-control" placeholder="Year" aria-label="Year" aria-describedby="basic-addon1" ng-model="year">
         </div>
         <div style="margin-top: 9%; margin-left: 9%; margin-right: 9%;">
-        <select id="genderDropdown" style="height: 55px;" class="form-control">
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Rather Not Say">Rather Not Say</option>
-                <option value="Custom">Custom</option>
+        <select id="genderDropdown" style="height: 55px;" class="form-control" >
+                <option value="Male" ng-model="gender">Male</option>
+                <option value="Female" ng-model="gender">Female</option>
+                <option value="Rather Not Say" ng-model="gender">Rather Not Say</option>
+                <option value="Custom" ng-model="gender">Custom</option>
         </select>
         </div>
         <div id="button">
@@ -172,10 +172,10 @@
       <div id="Gmail"><label style="font-size: 22px;">Use Your Gmail & Phone No.</label></div>
       <div id="Email"><label style="font-size: 18px; ">Enter Your Gmail And Phone No. </label></div>
       <div id="FName" class="input-group mb-3">
-        <input type="email" class="form-control" placeholder="Gmail" aria-label="Email" aria-describedby="basic-addon1">
+        <input type="email" class="form-control" placeholder="Gmail" aria-label="Email" aria-describedby="basic-addon1" ng-model="email">
       </div>
       <div id="LName" class="input-group mb-3">
-        <input  class="form-control" placeholder="Phone No." aria-label="Phone" aria-describedby="basic-addon1">
+        <input  class="form-control" placeholder="Phone No." aria-label="Phone" aria-describedby="basic-addon1" ng-model="phone">
       </div>
       <div id="button"><button type="button" class="btn btn-primary" ng-click="next3()">Next</button></div>
     </div>
@@ -184,10 +184,10 @@
       <div id="Name"><label style="font-size: 22px;">Create a Strong Password</label></div>
       <div id="pswd"><label style="font-size: 18px; ">Enter Your Password</label></div>
       <div id="FName" class="input-group mb-3">
-        <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+        <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" ng-model="password">
       </div>
       <div id="LName" class="input-group mb-3">
-        <input type="password" class="form-control" placeholder="Confirm Password" aria-label="Confirm Password" aria-describedby="basic-addon1">
+        <input type="password" class="form-control" placeholder="Confirm Password" aria-label="Confirm Password" aria-describedby="basic-addon1" ng-model="confirmpassword">
       </div>
       <div style="margin-left: 9%; margin-top: 3%;"><input  type="checkbox">  Show Password</div>
       <div id="Register"><button type="button" class="btn btn-primary" ng-click="drive()">Register</button></div>
