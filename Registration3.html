@@ -33,13 +33,9 @@
       margin-top: 12%;
       margin-left: 40%;
     }
-    #Email {
-      margin-left: 23.5%;
+    #Name {
       margin-top: 2%;
-    }
-    #Gmail {
-      margin-top: 2.5%;
-      margin-left: 42%;
+      margin-left: 21.5%;
     }
     #FName {
       margin-top: 9%;
@@ -53,9 +49,13 @@
       width: 83.5%;
       height: 10%;
     }
-    #button {
+    #pswd {
+      margin-left: 32%;
+      margin-top: 2%;
+    }
+    #Register {
       margin-top: 9%;
-      margin-left: 49%;
+      margin-left: 41%;
     }
   </style>
   <body>
@@ -70,47 +70,41 @@
           ><label style="font-size: 23px; color: #fbbc05">n</label
           ><label style="font-size: 23px; color: #ea4335">c</label>
         </div>
-        <div id="Gmail"><label style="font-size: 22px">Sign in </label></div>
-        <div id="Email">
-          <label style="font-size: 18px">to Continue to Google SkySync</label>
+        <div id="Name">
+          <label style="font-size: 22px">Create a Strong Password</label>
+        </div>
+        <div id="pswd">
+          <label style="font-size: 18px">Enter Your Password</label>
         </div>
         <div id="FName" class="input-group mb-3">
           <input
-            type="email"
+            type="password"
             class="form-control"
-            placeholder="Email"
-            aria-label="Email"
+            placeholder="Password"
+            aria-label="Password"
             aria-describedby="basic-addon1"
-            ng-model="email"
+            ng-model="password"
           />
         </div>
-        <div style="margin-left: 8.3%; margin-top: -1.5%">
-          <label style="color: #4285f4; font-size: 16px">Forgot email ?</label>
+        <div id="LName" class="input-group mb-3">
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Confirm Password"
+            aria-label="Confirm Password"
+            aria-describedby="basic-addon1"
+            ng-model="confirmpassword"
+          />
         </div>
-        <div style="margin-left: 8.3%; margin-top: 8%">
-          <label style="color: #5f6368; font-size: 15px"
-            >Not your computer? Use a Private Window to sign in.
-          </label>
+        <div style="margin-left: 9%; margin-top: 3%">
+          <input type="checkbox" /> Show Password
         </div>
-        <div style="margin-left: 8.3%; margin-top: -0.5%">
-          <label style="color: #4285f4; font-size: 16px">Learn more</label>
-        </div>
-
-        <div style="display: flex; margin-left: 38px">
-          <div>
-            <label ui-sref="Register" style="color: #4285f4; margin-top: 40%"
-              >Create Account</label
-            >
-          </div>
-          <div id="button">
-            <button type="button" class="btn btn-primary" ng-click="next()">
-              Next
-            </button>
-          </div>
-          <br />
+        <div id="Register">
+          <button type="button" class="btn btn-primary" ng-click="drive()">
+            Next
+          </button>
         </div>
       </div>
-     
     </div>
   </body>
 </html>

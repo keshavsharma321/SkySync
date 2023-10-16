@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="./node_modules/angular/angular.min.js"></script>
+    <script src="./node_modules/@uirouter/angularjs/release/angular-ui-router.js"></script>
+    <script src="./node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
+    <link
+      rel="stylesheet"
+      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
+  </head>
+  <style>
+    #main {
+      height: 500px;
+      width: 35%;
+      border: 1px solid #dadce0;
+      margin-top: 5.5%;
+      margin-left: 32.5%;
+      border-radius: 10px;
+    }
+    #button {
+      margin-top: 9%;
+      margin-left: 77.5%;
+    }
+    #basic {
+      margin-top: 1.5%;
+      margin-left: 28%;
+    }
+    #birth {
+      margin-left: 21.5%;
+      margin-top: 2%;
+    }
+    #date {
+      margin-top: 9%;
+      margin-left: 6%;
+      width: 23%;
+      height: 55px;
+      border: 1px solid #dadce0;
+      border-radius: 5px;
+    }
+    #year {
+      margin-top: 9%;
+      margin-left: 6%;
+      width: 23%;
+      height: 55px;
+      border: 1px solid #dadce0;
+      border-radius: 5px;
+    }
+    #Logo1 {
+      margin-top: 12%;
+      margin-left: 38%;
+    }
+  </style>
+  <body>
+    <div id="main">
+      <div>
+        <div id="Logo1">
+          <label style="font-size: 25px; color: #4285f4">S</label>
+          <label style="font-size: 23px; color: #ea4335">k</label>
+          <label style="font-size: 23px; color: #fbbc05">y</label>
+          <label style="font-size: 25px; color: #4285f4">S</label>
+          <label style="font-size: 23px; color: #34a853">y</label>
+          <label style="font-size: 23px; color: #fbbc05">n</label>
+          <label style="font-size: 23px; color: #ea4335">c</label>
+        </div>
+        <div id="basic">
+          <label style="font-size: 25px">Basic information</label>
+        </div>
+        <div id="birth">
+          <label style="font-size: 18px">Enter Your birthday and gender</label>
+        </div>
+        <div style="display: flex">
+          <div style="margin-top: 9%; margin-left: 9%">
+            <select
+              id="monthDropdown"
+              style="height: 55px"
+              class="form-control"
+            >
+              <option value="January" ng-model="month">January</option>
+              <option value="February" ng-model="month">February</option>
+              <option value="March" ng-model="month">March</option>
+              <option value="April" ng-model="month">April</option>
+              <option value="May" ng-model="month">May</option>
+              <option value="June" ng-model="month">June</option>
+              <option value="July" ng-model="month">July</option>
+              <option value="August" ng-model="month">August</option>
+              <option value="September" ng-model="month">September</option>
+              <option value="October" ng-model="month">October</option>
+              <option value="November" ng-model="month">November</option>
+              <option value="December" ng-model="month">December</option>
+            </select>
+          </div>
+          <input
+            id="date"
+            class="form-control"
+            placeholder="Date"
+            aria-label="Date"
+            aria-describedby="basic-addon1"
+            ng-model="date"
+          />
+          <input
+            id="year"
+            class="form-control"
+            placeholder="Year"
+            aria-label="Year"
+            aria-describedby="basic-addon1"
+            ng-model="year"
+          />
+        </div>
+        <div style="margin-top: 9%; margin-left: 9%; margin-right: 9%">
+          <select id="genderDropdown" style="height: 55px" class="form-control">
+            <option value="Male" ng-model="gender">Male</option>
+            <option value="Female" ng-model="gender">Female</option>
+            <option value="Rather Not Say" ng-model="gender">
+              Rather Not Say
+            </option>
+            <option value="Custom" ng-model="gender">Custom</option>
+          </select>
+        </div>
+        <div id="button">
+          <button type="button" class="btn btn-primary" ng-click="next2()">
+            Next
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -11,6 +11,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
     />
+    <script src="Register.js"></script>
     <link
       rel="stylesheet"
       href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
@@ -60,7 +61,7 @@
   </style>
   <body>
     <div id="main">
-      <div>
+    <div>
         <div id="Logo">
           <label style="font-size: 25px; color: #4285f4">S</label
           ><label style="font-size: 23px; color: #ea4335">k</label
@@ -76,41 +77,33 @@
         </div>
         <div id="FName" class="input-group mb-3">
           <input
-            type="email"
+            style="margin-top: 2%"
+            type="password"
             class="form-control"
-            placeholder="Email"
-            aria-label="Email"
+            placeholder="Password"
+            aria-label="Password"
             aria-describedby="basic-addon1"
-            ng-model="email"
+            ng-model="password"
           />
         </div>
-        <div style="margin-left: 8.3%; margin-top: -1.5%">
-          <label style="color: #4285f4; font-size: 16px">Forgot email ?</label>
-        </div>
-        <div style="margin-left: 8.3%; margin-top: 8%">
-          <label style="color: #5f6368; font-size: 15px"
-            >Not your computer? Use a Private Window to sign in.
-          </label>
-        </div>
-        <div style="margin-left: 8.3%; margin-top: -0.5%">
-          <label style="color: #4285f4; font-size: 16px">Learn more</label>
+        <div style="margin-left: 8%">
+          <input type="checkbox" /> <label>Show Password</label>
         </div>
 
         <div style="display: flex; margin-left: 38px">
           <div>
             <label ui-sref="Register" style="color: #4285f4; margin-top: 40%"
-              >Create Account</label
+              >Forgot password ?</label
             >
           </div>
-          <div id="button">
-            <button type="button" class="btn btn-primary" ng-click="next()">
-              Next
+          <div id="button" style="margin-left: 45%; margin-top: 10%">
+            <button type="button" class="btn btn-primary" ng-click="login()">
+              Login
             </button>
           </div>
           <br />
         </div>
       </div>
-     
-    </div>
+      </div>
   </body>
-</html>
+  </html>  
