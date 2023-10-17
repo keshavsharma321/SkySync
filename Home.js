@@ -77,16 +77,16 @@ myApp.service('RegistrationService', function() {
   var userData = {};
 
   return {
-    getfirstname: function () {
+    getfirst_name: function () {
       return userData.first_name;
     },
-    setfirstname: function (first_name) {
+    setfirst_name: function (first_name) {
       userData.first_name = first_name;
     },
-    getlastname: function () {
+    getlast_name: function () {
       return userData.last_name;
     },
-    setlastname: function (last_name) {
+    setlast_name: function (last_name) {
       userData.last_name = last_name;
     },
     getmonth: function () {
@@ -113,11 +113,11 @@ myApp.service('RegistrationService', function() {
     setgender: function (gender) {
       userData.gender = gender;
     },
-    getemail: function () {
-      return userData.email;
+    getusername: function () {
+      return userData.username;
     },
-    setemail: function (email) {
-      userData.email = email;
+    setusername: function (username) {
+      userData.username = username;
     },
     getphone: function () {
       return userData.phone;
@@ -131,11 +131,11 @@ myApp.service('RegistrationService', function() {
     setpassword: function (password) {
       userData.password = password;
     },
-    getrecoveryemail: function () {
-      return userData.recoveryemail;
+    getrecovery_email: function () {
+      return userData.recovery_email;
     },
-    setrecoveryemail: function (recoveryemail) {
-      userData.recoveryemail = recoveryemail;
+    setrecovery_email: function (recovery_email) {
+      userData.recovery_email = recovery_email;
     },
     getcode: function () {
       return userData.code;

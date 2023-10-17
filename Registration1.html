@@ -86,19 +86,20 @@
               id="monthDropdown"
               style="height: 55px"
               class="form-control"
-            >
-              <option value="January" ng-model="month">January</option>
-              <option value="February" ng-model="month">February</option>
-              <option value="March" ng-model="month">March</option>
-              <option value="April" ng-model="month">April</option>
-              <option value="May" ng-model="month">May</option>
-              <option value="June" ng-model="month">June</option>
-              <option value="July" ng-model="month">July</option>
-              <option value="August" ng-model="month">August</option>
-              <option value="September" ng-model="month">September</option>
-              <option value="October" ng-model="month">October</option>
-              <option value="November" ng-model="month">November</option>
-              <option value="December" ng-model="month">December</option>
+              ng-model="month"
+            > <option value="" >Select Month</option>
+              <option value="1" >January</option>
+              <option value="2" >February</option>
+              <option value="3" >March</option>
+              <option value="4" >April</option>
+              <option value="5" >May</option>
+              <option value="6" >June</option>
+              <option value="7" >July</option>
+              <option value="8" >August</option>
+              <option value="9" >September</option>
+              <option value="10" >October</option>
+              <option value="11" >November</option>
+              <option value="12">December</option>
             </select>
           </div>
           <input
@@ -118,15 +119,18 @@
             ng-model="year"
           />
         </div>
-        <div style="margin-top: 9%; margin-left: 9%; margin-right: 9%">
-          <select id="genderDropdown" style="height: 55px" class="form-control">
-            <option value="Male" ng-model="gender">Male</option>
-            <option value="Female" ng-model="gender">Female</option>
-            <option value="Rather Not Say" ng-model="gender">
-              Rather Not Say
-            </option>
-            <option value="Custom" ng-model="gender">Custom</option>
-          </select>
+        <div style="display: flex; margin-left: 0%;">
+        <div style="margin-top: 9%; margin-left: 9%; margin-right: 9% ">
+          <select
+          style=" width: 98%;
+          height: 55px; background-color: white; border: 1px solid #dee2e6; border-radius: 5px;"
+          id="genderdropdown"
+          ng-model="gender"
+          ng-options="opt.option for opt in options"
+        >
+          <option value="">Select Gender</option>
+        </select>
+        </div>
         </div>
         <div id="button">
           <button type="button" class="btn btn-primary" ng-click="next2()">
