@@ -16,7 +16,7 @@ myApp.controller("Login1Controller", [
 
         $http({
           method: "POST",
-          url: "https://10.21.81.127:8000/api/login_view/",
+          url: "https://10.21.87.8:8000/api/login_view/",
           data: data,
           withCredentials: true,
         })

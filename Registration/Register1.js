@@ -1,6 +1,6 @@
 myApp.controller('Registration1Controller', function($scope,$state ,$http,RegistrationService) {
   $http
-  .get("https://10.21.81.127:8000/api/options/?type=gender")
+  .get("https://10.21.87.8:8000/api/options/?type=gender")
   .then(function (response) {
     $scope.options = response.data;
     console.log($scope.options);

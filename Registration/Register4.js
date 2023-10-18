@@ -6,7 +6,7 @@ myApp.controller('Registration4Controller', function($scope,$state ,$http, Regis
       console.log(data)
       $http({
         method: "POST",
-        url: "https://10.21.81.127:8000/api/verify/",
+        url: "https://10.21.87.8:8000/api/verify/",
         data: data,
         withCredentials: true,
       }).then(
@@ -25,7 +25,7 @@ myApp.controller('Registration4Controller', function($scope,$state ,$http, Regis
      console.log(data);
       $http({
         method: "POST",
-        url: "https://10.21.81.127:8000/api/verify/",
+        url: "https://10.21.87.8:8000/api/verify/",
         data: data,
         withCredentials: true,
       })
@@ -37,6 +37,7 @@ myApp.controller('Registration4Controller', function($scope,$state ,$http, Regis
       });
     };
     $scope.next4 = function(){
+      var title = RegistrationService.title();
       var first_name = RegistrationService.getfirst_name();
       var last_name = RegistrationService.getlast_name();
       var month = RegistrationService.getmonth();
@@ -50,6 +51,7 @@ myApp.controller('Registration4Controller', function($scope,$state ,$http, Regis
       var recoveryemail = $scope.recoveryemail;
 
       var data = {
+        title : title,
         first_name: first_name,
         last_name: last_name,
         month: month,
@@ -64,7 +66,7 @@ myApp.controller('Registration4Controller', function($scope,$state ,$http, Regis
       console.log(data);
       $http({
         method: "POST",
-        url: "https://10.21.81.127:8000/api/user_registration/",
+        url: "https://10.21.87.8:8000/api/user_registration/",
         data: data,
         withCredentials: true,
       })

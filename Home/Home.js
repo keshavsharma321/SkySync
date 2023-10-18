@@ -77,6 +77,12 @@ myApp.service('RegistrationService', function() {
   var userData = {};
 
   return {
+    gettitle: function () {
+      return userData.title;
+    },
+    settitle: function (title) {
+      userData.title = title;
+    },
     getfirst_name: function () {
       return userData.first_name;
     },
