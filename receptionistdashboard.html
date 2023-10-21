@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    <script src="./node_modules/sweetalert2/dist/sweetalert2.min.css"></script>
+    <script src="./node_modules/angular/angular.js"></script>
+    <script src="./node_modules/@uirouter/angularjs/release/angular-ui-router.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <script src="hos.js"></script>
+    
+    <style>
+          .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #3b227a;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .sidebar a {
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: #f1f1f1;
+        }
+
+        #openSidebarBtn {
+            font-size: 30px;
+            cursor: pointer;
+            position: fixed;
+            left: 20px;
+            top: 20px;
+        }
+
+        #main {
+            transition: margin-left .5s;
+            padding: 64px;
+            background-color: #b4e4fb;
+            /* height: 655px; */
+        }
+        #image{
+            height: 430px;
+            margin-top:-300px ;
+            margin-left: 70px;
+
+
+        }
+    </style>    
+</head>
+<body>
+    <div id="mySidebar" style="background-color: #3b227a;" class="sidebar">
+        <div ng-repeat="panel in panels">
+        <a href="" style="color: white;" ng-click="handleHeadingClick(panel.id)"><i style="color: white; height: 15px;" class=" {{panel.icon}}"></i>{{panel.heading}}</a>
+        </div>
+        <button style="background-color: #3b227a; color: white; margin-left: 23px;" class="btn btn-primary" ng-click="logout()">Logout</button>
+    </div>
+
+    <div id="main">
+        <span id="openSidebarBtn" style="color: #3b227a;" ng-click="openSidebar()">&#9776;</span>
+        <h1 style="text-align: center; margin-top: 10px;color:#3b227a">{{pageTitle}}</h1>
+        <div ng-show="showDashboardContent" style=" width:1200px; border: 2px solid #3b227a; border-radius: 25px; margin-left: 10px ; margin-top: 40px; background-color: #b4e4fb;" >
+            <h1
+            style="
+              margin-top: 50px;
+              margin-left: 80px;
+              font-size: 45px;
+              color: #3b227a;
+            "
+          >
+            Welcome Receptionist
+          </h1>
+            
+            <div ng-repeat="recept in receptionsit" style="margin-left: 80px; margin-top: 50px;">
+                <div style="display:flex">
+                    <div>
+                        <label style="font-size: 30px; color: #3b227a">Username:</label<br>
+                <input  style="color: #3b227a;"class="form-control" value="{{recept.username}}" style="width: 250px; margin-top: 20px;">
+                  </div>
+                  <div style="margin-left: 120px;">
+                    <label style="font-size: 30px; color: #3b227a">Firstname:</label<br>
+                     <input  style="color: #3b227a;" class="form-control" value="{{recept.firstname}}" style="width: 250px; margin-top: 20px;">
+                       </div>
+                 </div>
+                 <div style="display: flex; margin-top: 80px;">
+                    <div>
+                        <label style="font-size: 30px; color: #3b227a">Lastname:</label<br>
+                         <input  style="color: #3b227a;" class="form-control" value="{{recept.lastname}}" style="width: 250px; margin-top: 20px;">
+                           </div>
+                           <div style="margin-left: 120px;">
+                            <label style="font-size: 30px; color: #3b227a">Gender:</label<br>
+                              <input style="color: #3b227a;" class="form-control" value="{{recept.gender}}" style="width: 250px; margin-top: 20px;">
+                                </div>
+                        <image id="image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWRC99KcxpKL56CE-IC8RUAdVovjsoY3ly8Q&usqp=CAU"></image>        
+                 </div>
+                 <br>
+                 <br>
+              </div>
+
+
+            </div>
+            </div>
+    </div>
+    <div ng-show="showAppointmentsContent" style="margin-left: 100px;">
+        <br>
+        <br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="color: #3b227a;">Appointment ID</th>
+                    <th style="color: #3b227a;">FirstName</th>
+                    <th style="color: #3b227a;">LastName</th>
+                    <th style="color: #3b227a;">Age</th>
+                    <th style="color: #3b227a;">Problem</th>
+                    <th style="color: #3b227a;">Gender</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="appoint in appointment">
+                    <td style="color: #3b227a;">{{ appoint.id }}</td>
+                    <td style="color: #3b227a;">{{ appoint.firstname }}</td>
+                    <td style="color: #3b227a;">{{ appoint.lastname }}</td>
+                    <td style="color: #3b227a;">{{ appoint.age }}</td>
+                    <td style="color: #3b227a;">{{ appoint.problem }}</td>
+                    <td style="color: #3b227a;">{{ appoint.gender }}</td>
+                    <td>
+                        <button style="background-color: #3b227a;" type="button" class="btn btn-dark" ng-click="ApproveAppointment(appoint.id)">Approve</button>
+                        <button style="background-color: #3b227a;" type="button" class="btn btn-dark"  onclick="document.getElementById('id01').style.display='block'" ng-click="RejectAppointment(appoint.id)">Reject</button>
+                        <div id="id01" class="w3-modal">
+                            <div class="w3-modal-content w3-card-4" style="width:400px;">
+                              <header class="modal-header"> 
+                                <span onclick="document.getElementById('id01').style.display='none'" 
+                                class="w3-button w3-display-topright">&times;</span> 
+                              </header><br>
+                            
+                            
+                              <div class="w3-container">
+                                
+                              <label style="color: #3b227a;"><b>Reason for Rejection :</b></label><input style="width:300px" class="form-control" ng-model="appointment.reject" placeholder="Enter Reason"><br>
+                              </div>
+                              
+                                <button style="background-color: #3b227a;" type="button"  ng-click="Submit(appoint.id)()" style="margin-left: 150px;" class="btn btn-dark">Submit</button><br>
+                              <br>
+                            </div>
+                          </div>
+                      </td>
+                </tr>
+            </tbody>
+        </table>
+        <button style="background-color: #3b227a;" class="btn btn-dark" ng-click="AppointSheet()">Appointments</button>
+    </div>
+
+    <div ng-show="showPatientsContent" style="margin-left: 50px; margin-right:50px ;">
+     <br>
+     <br>
+     <table class="table" >
+        <thead>
+            <tr>
+                <th style="color: #3b227a;">User Id:</th>
+                <th style="color: #3b227a;">Firstname:</th>
+                <th style="color: #3b227a;">Lastname:</th>
+                <th style="color: #3b227a;">Gender:</th>
+                <th style="color: #3b227a;">Age:</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="patient in patients">
+                 <td style="color: #3b227a;">{{patient.user_id}}</td>
+                 <td style="color: #3b227a;">{{patient.firstname}}</td>
+                 <td style="color: #3b227a;">{{patient.lastname}}</td>
+                 <td style="color: #3b227a;">{{patient.gender}}</td>
+                 <td style="color: #3b227a;">{{patient.age}}</td>
+            </tr>
+        </tbody>
+       
+     </table>
+     <button style="background-color: #3b227a;" class="btn btn-dark" ng-click="Excelsheet()">Patients</button>
+    </div>
+
+    <div ng-show="showDoctorsContent" style="margin-left: 50px; margin-right:50px ;">
+        <br>
+        <br>
+        <table class="table">
+           <thead>
+               <tr>
+                   <th style="color: #3b227a;">User:</th>
+                   <th style="color: #3b227a;">Firstname:</th>
+                   <th style="color: #3b227a;">Lastname:</th>
+                   <th style="color: #3b227a;">Gender:</th>
+                   <th style="color: #3b227a;">Speciality:</th>
+               </tr>
+           </thead>
+           <tbody>
+               <tr ng-repeat="doctor in doctors">
+                    <td style="color: #3b227a;">{{doctor.user}}</td>
+                    <td style="color: #3b227a;">{{doctor.firstname}}</td>
+                    <td style="color: #3b227a;">{{doctor.lastname}}</td>
+                    <td style="color: #3b227a;">{{doctor.gender}}</td>
+                    <td style="color: #3b227a;">{{doctor.speciality}}</td>
+               </tr>
+           </tbody>
+        </table>
+        <button style="background-color: #3b227a;" class="btn btn-dark" ng-click="Doctorsheet()">Doctors</button>
+    </div>
+    <div ng-show="showPaymentsContent" style="margin-left: 100px;">
+        <br>
+        <br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="color: #3b227a;">Appointment ID</th>
+                    <th style="color: #3b227a;">FirstName</th>
+                    <th style="color: #3b227a;">LastName</th>
+                    <th style="color: #3b227a;">Age</th>
+                    <th style="color: #3b227a;">Problem</th>
+                    <th style="color: #3b227a;">Gender</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="user in users">
+                    <td style="color: #3b227a;">{{ user.id }}</td>
+                    <td style="color: #3b227a;">{{ user.firstname }}</td>
+                    <td style="color: #3b227a;">{{ user.lastname }}</td>
+                    <td style="color: #3b227a;">{{ user.age }}</td>
+                    <td style="color: #3b227a;">{{ user.problem }}</td>
+                    <td style="color: #3b227a;">{{ user.gender }}</td>
+                    <td>
+                        <button style="background-color: #3b227a;" type="button" class="btn btn-dark" onclick="document.getElementById('id01').style.display='block'" ng-click="Initiated(user.id)">Payment Initiated</button>
+                                          
+                    <div id="id01" class="w3-modal">
+                        <div class="w3-modal-content w3-card-4" style="width:400px;">
+                          <header class="modal-header"> 
+                            <span onclick="document.getElementById('id01').style.display='none'" 
+                            class="w3-button w3-display-topright">&times;</span> 
+                          </header><br>
+                        
+                        
+                          <div class="w3-container">
+                            
+                          <label style="color: #3b227a;"><b>Amount to be paid :</b></label><input style="width:300px" class="form-control" ng-model="users.payment" placeholder="Enter Amount"><br>
+                          </div>
+                          
+                            <button style="background-color: #3b227a;"type="button"  ng-click="Submit(user.id)()" style="margin-left: 150px;" class="btn btn-dark">Submit</button><br>
+                          <br>
+                        </div>
+                      </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-show="showReportsContent" style="margin-left: 150px; margin-top: 120px;">
+        <div style="display: flex;">
+            <div>
+           <canvas id="myChart" style="width:160%;max-width:900px"></canvas>
+           </div>
+
+           <div style="margin-left: 30px;">
+           <canvas id="Chart" style="width:160%;max-width:900px"></canvas>
+           </div>
+           </div>
+    </div>
+
+</body>
+</html>
