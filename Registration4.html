@@ -84,6 +84,8 @@
             aria-label="Email"
             aria-describedby="basic-addon1"
             ng-model="recoveryemail"
+            type="email"
+            required
           />
         </div>
         <button style="margin-left: 69%; margin-top: 1%;" class="btn btn-primary" ng-click="verify()">Send Code</button>
@@ -94,6 +96,8 @@
             aria-label="Code"
             aria-describedby="basic-addon1"
             ng-model="Code"
+            pattern="[0-9][0-9][0-9][0-9]"
+            required
           />
         </div>
         <button style="margin-left: 76%; margin-top: 1%;" class="btn btn-primary" ng-click="code()">Verify</button>

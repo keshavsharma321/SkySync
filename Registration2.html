@@ -83,6 +83,7 @@
             aria-label="Email"
             aria-describedby="basic-addon1"
             ng-model="username"
+            required
           />
         </div>
         <div id="LName" class="input-group mb-3">
@@ -92,6 +93,9 @@
             aria-label="Phone"
             aria-describedby="basic-addon1"
             ng-model="phone"
+             maxlength="10"
+             minlength="10"
+            required
           />
         </div>
         <div id="button">

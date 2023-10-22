@@ -87,6 +87,7 @@
               style="height: 55px"
               class="form-control"
               ng-model="month"
+              required
             > <option value="" >Select Month</option>
               <option value="1" >January</option>
               <option value="2" >February</option>
@@ -109,14 +110,21 @@
             aria-label="Date"
             aria-describedby="basic-addon1"
             ng-model="date"
+            type="number"
+            min="1"
+            max="31"
+            required
           />
           <input
             id="year"
+            type="number"
+            min="1"
             class="form-control"
             placeholder="Year"
             aria-label="Year"
             aria-describedby="basic-addon1"
             ng-model="year"
+            required
           />
         </div>
         <div style="display: flex; margin-left: 0%;">
@@ -127,6 +135,7 @@
           id="genderdropdown"
           ng-model="gender"
           ng-options="opt.option for opt in options"
+          required
         >
           <option value="{{opt.option}}">Select Gender</option>
         </select>

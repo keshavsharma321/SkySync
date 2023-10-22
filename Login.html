@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="./node_modules/angular/angular.min.js"></script>
     <script src="./node_modules/@uirouter/angularjs/release/angular-ui-router.js"></script>
@@ -22,23 +22,23 @@
   </head>
   <style>
     #main {
-      height: 500px;
-      width: 35%;
-      border: 1px solid #dadce0;
+      height: 32.25rem ;
+      width: 30rem;
+      border: 0.0625rem solid #dadce0;
       margin-top: 5.5%;
       margin-left: 32.5%;
-      border-radius: 10px;
+      border-radius: 0.625rem ;
     }
     #Logo {
       margin-top: 12%;
       margin-left: 40%;
     }
     #Email {
-      margin-left: 23.5%;
+      margin-left: 7.125rem;
       margin-top: 2%;
     }
     #Gmail {
-      margin-top: 2.5%;
+      margin-top: 2%;
       margin-left: 42%;
     }
     #FName {
@@ -59,20 +59,25 @@
     }
   </style>
   <body>
+    <div>
     <div id="main">
       <div>
         <div id="Logo">
-          <label style="font-size: 25px; color: #4285f4">S</label
-          ><label style="font-size: 23px; color: #ea4335">k</label
-          ><label style="font-size: 23px; color: #fbbc05">y</label
-          ><label style="font-size: 25px; color: #4285f4">S</label
-          ><label style="font-size: 23px; color: #34a853">y</label
-          ><label style="font-size: 23px; color: #fbbc05">n</label
-          ><label style="font-size: 23px; color: #ea4335">c</label>
+          <label style="font-size: 1.5625rem; color: #4285f4">S</label
+          ><label style="font-size: 1.4375rem; color: #ea4335">k</label
+          ><label style="font-size: 1.4375rem; color: #fbbc05">y</label
+          ><label style="font-size: 1.5625rem; color: #4285f4">S</label
+          ><label style="font-size: 1.4375rem; color: #34a853">y</label
+          ><label style="font-size: 1.4375rem; color: #fbbc05">n</label
+          ><label style="font-size: 1.4375rem; color: #ea4335">c</label>
         </div>
-        <div id="Gmail"><label style="font-size: 22px">Sign in </label></div>
+        <div id="Gmail">
+          <label style="font-size: 1.375rem">Sign in </label>
+        </div>
         <div id="Email">
-          <label style="font-size: 18px">to Continue to Google SkySync</label>
+          <label style="font-size: 1.125rem"
+            >to Continue to Google SkySync</label
+          >
         </div>
         <div id="FName" class="input-group mb-3">
           <input
@@ -82,21 +87,23 @@
             aria-label="Email"
             aria-describedby="basic-addon1"
             ng-model="email"
+            type="email"
+            required
           />
         </div>
         <div style="margin-left: 8.3%; margin-top: -1.5%">
-          <label style="color: #4285f4; font-size: 16px">Forgot email ?</label>
+          <label style="color: #4285f4; font-size: 1 rem">Forgot email ?</label>
         </div>
         <div style="margin-left: 8.3%; margin-top: 8%">
-          <label style="color: #5f6368; font-size: 15px"
+          <label style="color: #5f6368; font-size: 0.9375rem"
             >Not your computer? Use a Private Window to sign in.
           </label>
         </div>
         <div style="margin-left: 8.3%; margin-top: -0.5%">
-          <label style="color: #4285f4; font-size: 16px">Learn more</label>
+          <label style="color: #4285f4; font-size: 1rem">Learn more</label>
         </div>
 
-        <div style="display: flex; margin-left: 38px">
+        <div style="display: flex; margin-left: 2.375rem">
           <div>
             <label ui-sref="Register" style="color: #4285f4; margin-top: 40%"
               >Create Account</label
@@ -110,7 +117,7 @@
           <br />
         </div>
       </div>
-     
+    </div>
     </div>
   </body>
 </html>

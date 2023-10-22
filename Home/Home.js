@@ -51,6 +51,8 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise("/Home");
 });
 
+var ip =  "https://10.21.83.107:8000/";
+
 myApp.service('UserDataService', function () {
   var userData = {};
 

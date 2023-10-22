@@ -98,6 +98,16 @@
       margin-left: 94%;
       margin-top: -2.8%;
     }
+table, th, td {
+  border-collapse: collapse;
+}
+th, td {
+  padding-top: 10px;
+  padding-bottom: 20px;
+  padding-left: 45px;
+  padding-right: 30px;
+}
+
   </style>
       <body>
         <div style="display: flex">
@@ -133,8 +143,10 @@
           </svg></div>
           <div id="grid"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-grid-3x3-gap-fill" viewBox="0 0 16 16">
             <path d="M1 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2zM1 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V7zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V7zM1 12a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2z"/>
+          </svg></div><div id="profile">
+          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
           </svg></div>
-          <div id="profile" ng-repeat="image in images"><image style="width: 16px; height: 16px;" src="{{image.img}}"></image></div>
         </div>
         <div style="display: flex;">
           <div>
@@ -148,33 +160,295 @@
               <span onclick="document.getElementById('id01').style.display='none'" 
               class="w3-button w3-display-topright">&times;</span>
              
-            
-            <div  class="w3-container">
-              <br>
-              <div>
-                <i class="bi bi-folder"></i>  <label>New folder</label>
-              </div>
-              <br>
-             <div>
-              <i class="bi bi-file-earmark-plus-fill"></i>  <label>File Upload</label>
 
-             </div>
-             <br>
-             <div>
-              <i class="bi bi-folder2"></i>  <label>Folder Upload</label>
-             </div>
-             <br>
-            </div>
+                <div class="w3-container">
+                    <br>
+                    <div>
+                        <i class="bi bi-folder"></i>
+                        <label ng-click="openNewFolderModal()">New folder</label>
+                    </div>
+                    <br>
+                    <div style="display: flex;">
+                        <i class="bi bi-file-earmark-plus-fill"></i><input type="file"id="file"/>
+                      <button type="submit" ng-click="sendfile()" >Send</button>  
+                    </div>
+                    <br>
+                    <div style="display: flex;">
+                        <i class="bi bi-folder2"></i><label>Upload Folder</label>
+                    </div>
+                    <br>
+                </div>
+            
+               
+                <div id="newFolderModal" class="modal">
+                    <div style="width : 300px;" class="modal-content">
+                        <h4>Create a New Folder</h4>
+                        <input style="width : 300px;" type="text" ng-model="newFolderName">
+                        <button style="width : 300px;" ng-click="createNewFolder()">Save</button>
+                        <button style="width : 300px;" ng-click="closeNewFolderModal()">Back</button>
+                    </div>
+                </div>
+            
+                
+            
+                
+          
+            
        
           </div>
         </div>
         <br>
         <div class="div4" ng-repeat="panel in panels">
-        <i class="{{panel.icon}}"></i>  <label style="margin-left: 5%;">{{panel.option}}</label>
+          <div ng-click="handleHeadingClick(panel.option)">
+        <i class="{{panel.icon}}"></i><label style="margin-left: 5%;">{{panel.option}}</label>
+      </div>
         </div>
         </div>
-        <div id="main"></div>
+        <div id="main">
+          
+         <div ng-show="showdrivecontent">
+         <div> <label style="margin-top: 1.5%; margin-left: 2%; font-size: 30px;"> My Drive</label></div>
+         <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 80px; background-color: white; border-color: black; border-radius: 5px;"><option>Type</option></select>
+         <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 90px; background-color: white; border-color: black; border-radius: 5px;"><option>Modifed</option></select>
+         <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 80px; background-color: white; border-color: black; border-radius: 5px;"><option>People</option></select>
+         <div> <label style="margin-top: 1.5%; margin-left: 2%; font-size: 15px;">Suggested</label></div> <br>
+         <div  style="display: flex; ">
+           <div style="height: 150px; width: 250px;  border: 1.5px solid black; border-radius: 5px; margin-left: 0.7%;" ng-repeat="suggest in suggested"><h6 style="font-size: 16px; margin-left: 2%; margin-top: 2%;">{{suggest.file_name}}</h6></div> 
+          </div>
+          <br>
+          <table >
+            <thead >
+              <tr><th>  </th>
+                  <th>Name        </th>
+                  <th>Owner       </th>
+                  <th>Last Modified</th>
+                  <th>File Size</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr  ng-repeat="data in files">
+                  <td><i  class="{{data.icon}}"></i></td>
+                 <div id="nameof"><td>{{ data.file_name }}{{data.folder_name}}</td></div>
+                  <td>{{ data.owner__first_name }}</td>
+                  <td>{{data.last_modified }}</td>
+                  <td>{{ data.file_size_kb}} </td>
+                  <td > <div style="display: flex;"> <div><i ng-click="shared(data.id)" onclick="document.getElementById('shared').style.display='block'" class="bi bi-person"></i></div>  <div style="margin-left: 10px;"><i class="bi bi-download"></i></div>  <div ng-click="handle(data.id)" onclick="document.getElementById('rename').style.display='block'" style="margin-left: 10px;"><i  class="bi bi-pen"></i></div>  <div ng-click="handleclick(data.id ,  data.starred)" style="margin-left: 10px; display: flex;"> <div ng-show="showuncolured1"> <i   class="bi bi-star"></i></div><div ng-show="showcolured1" ><i  class="bi bi-star-fill"></i></div></div> <div style="margin-left: 10px;" ><i onclick="document.getElementById('bin').style.display='block'" ng-click="bin(data.id)" class="bi bi-trash"></i></div>  </div> </td>
+              </tr>
+          </tbody>
+           </table>
+           </div>
+
+           <div id="rename" class="w3-modal" style="text-align: center; align-items: center; border-radius: 20px; ">
+            <div class="w3-modal-content" style="height: 200px; width: 30%;  border-radius: 10px;">
+              <div class="w3-container" >
+                <br>
+                <span onclick="document.getElementById('rename').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                <div style="margin-left: -60%;"><label style="font-size: 25px;">Rename</label></div><br>
+                <div ><input  ng-model="renamed" style="width: 85%; border-radius: 5px; border: 2px solid #6696e4;"></div><br>
+                <div style="margin-left: 43%;"><button class="btn btn-primary" onclick="document.getElementById('rename').style.display='none'" style="background-color: white; border-radius: 20px; color: #4285f4;">Cancel</button>   <button class="btn btn-primary" style="width: 30%; border-radius: 20px; margin-left: 5%;" ng-click="rename(data.id)">Ok</button></div><br>
+              </div>
+            </div>
+          </div>
+
+          <div id="bin" class="w3-modal" style="text-align: center; align-items: center; border-radius: 20px; ">
+            <div class="w3-modal-content" style="height: 200px; width: 30%;  border-radius: 10px;">
+              <div class="w3-container" >
+                <br>
+                <span onclick="document.getElementById('bin').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                <div style="margin-left: -60%;"><label style="font-size: 25px;">Trash</label></div><br>
+                <div ><label>You Want To Move Your File To Trash</label></div><br>
+                <div style="margin-left: 43%;"><button class="btn btn-primary" onclick="document.getElementById('bin').style.display='none'" style="background-color: white; border-radius: 20px; color: #4285f4;">Cancel</button>   <button class="btn btn-primary" style="width: 30%; border-radius: 20px; margin-left: 5%;" ng-click="trash()" onclick="document.getElementById('bin').style.display='none'">Ok</button></div><br>
+              </div>
+            </div>
+          </div>
+      
+          <div id="shared" class="w3-modal" style="text-align: center; align-items: center; border-radius: 20px; ">
+            <div class="w3-modal-content" style="height: 300px; width: 30%;  border-radius: 10px;">
+              <div class="w3-container" >
+                <br>
+                <span onclick="document.getElementById('shared').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                <div style="margin-left: 0%;"><label style="font-size: 25px;">Share</label></div><br>
+                <div  style="margin-top: -5%;" ><label style="font-size: 20px;">Select the user you want to share with </label></div><br>
+                <div  ng-repeat="share in recieved">
+                <div ng-click="Post(share.id)"> <label > {{share.first_name}}  {{share.last_name}} </label> </div>
+                </div><br>
+                <div style="margin-left: 43%;"><button class="btn btn-primary" onclick="document.getElementById('shared').style.display='none'" style="background-color: white; border-radius: 20px; color: #4285f4;">Cancel</button></div><br>
+              </div>
+            </div>
+          </div>
+      
+
+      
+        <div ng-show="showcomputerscontent">
+         <div> <label style="margin-top: 1.5%; margin-left: 2%; font-size: 30px;">Computers</label></div>
+         <div style="align-items: center; text-align: center;"> <image style="width: 300px; height: 300px; margin-top: 5%;"  src="//ssl.gstatic.com/docs/doclist/images/empty_state_computers_v2.svg"></image></div>
+         <div style="align-items: center; text-align: center;"> <label style=" font-size: 30px;">No Computers Syncing</label></div>
+         <div style="align-items: center; text-align: center;"> <label style=" font-size: 15px; color: grey;">Folders on your computer that you sync with skysync using skysync will show up </label></div>
+         <div style="align-items: center; text-align: center;"> <label style=" font-size: 15px; color: grey;">here.</label> <label style=" font-size: 15px; color:  #4285f4";">Learn more</label> </div>
+
+         
+        </div>
+        <div ng-show="showsharedcontent">
+         <div> <label style="margin-top: 1.5%; margin-left: 2%; font-size: 30px;">Shared</label></div>
+
+          <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 80px; background-color: white; border-color: black; border-radius: 5px;"><option>Type</option></select>
+          <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 90px; background-color: white; border-color: black; border-radius: 5px;"><option>Modifed</option></select>
+          <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 80px; background-color: white; border-color: black; border-radius: 5px;"><option>People</option></select>
+      
+
+          <table >
+            <thead >
+              <tr>
+                  <th>Name    </th>
+                  <th>Owner       </th>
+                  <th>Shared</th>
+                  
+              </tr>
+          </thead>
+          <tbody>
+              <tr ng-repeat="data in shared">
+                  <td>{{ data.data__file_name }}{{data.folder__folder_name}}</td>
+                  <td>{{ data.owner__first_name }}</td>
+                  <td>{{data.shared_on }}</td>
+              </tr>
+          </tbody>
+           </table>
+        </div>
+        <div ng-show="showrecentcontent">
+         <div> <label style="margin-top: 1.5%; margin-left: 2%; font-size: 30px;">Recent</label></div>
+
+          <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 80px; background-color: white; border-color: black; border-radius: 5px;"><option>Type</option></select>
+          <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 90px; background-color: white; border-color: black; border-radius: 5px;"><option>Modifed</option></select>
+          <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 80px; background-color: white; border-color: black; border-radius: 5px;"><option>People</option></select>
+    
+
+          <table>
+            <thead >
+              <tr>
+                  <th>Name        </th>
+                  <th>Owner       </th>
+                  <th>Last Modified</th>
+                  <th>File Size</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr ng-repeat="data in recents">
+                  <td>{{ data.file_name }}{{data.folder_name}}</td>
+                  <td>{{ data.owner__first_name }}</td>
+                  <td>{{data.last_modified }}</td>
+                  <td>{{ data.file_size_kb}} </td>
+                  <td><i class="bi bi-three-dots-vertical"></i></td>
+              </tr>
+          </tbody>
+           </table>
+        </div>
+        <div ng-show="showstarredcontent">
+         <div> <label style="margin-top: 1.5%; margin-left: 2%; font-size: 30px;">Starred</label></div>
+
+         <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 80px; background-color: white; border-color: black; border-radius: 5px;"><option>Type</option></select>
+         <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 90px; background-color: white; border-color: black; border-radius: 5px;"><option>Modifed</option></select>
+         <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 80px; background-color: white; border-color: black; border-radius: 5px;"><option>People</option></select>
+
+          <table >
+            <thead >
+              <tr>
+                  <th>Name        </th>
+                  <th>Owner       </th>
+                  <th>Last Modified</th>
+                  <th>File Size(in Kb )</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr ng-repeat="data in starred">
+                  <td>{{ data.file_name }}{{data.folder_name}}</td>
+                  <td>{{ data.owner__first_name }}</td>
+                  <td>{{data.last_modified }}</td>
+                  <td>{{data.file_size_kb }} </td>
+                  
+              </tr>
+          </tbody>
+           </table>
+        </div>
+        <div ng-show="showspamcontent">
+         <div> <label style="margin-top: 1.5%; margin-left: 2%; font-size: 30px;">Spam</label></div>
+         <div style=" height: 40px; width: 985px; background-color: #e3e3e3; border-radius: 5px; font-size: 12px; margin-left: 1.5%; margin-right: 2%; margin-top: 1%;"><label style="font-size: 15px; margin-left: 15px; margin-top: 5.5px;"> Files in spam would not appear anywhere else in drive . Files are removed permanently after 30 days</label></div>
+         <div style="align-items: center; text-align: center; margin-top: 8%;"><img  style="width: 200px; height: 200px; margin-top: 5%;" src="//ssl.gstatic.com/docs/doclist/images/empty_state_shared_files_v2.svg"></div>
+         <div style="align-items: center; text-align: center; margin-top: 3%;"> <label style=" font-size: 30px;">Your Spam is empty</label></div>
+
+        </div>
+        <div ng-show="showbincontent">
+         <div> <label style="margin-top: 1.5%; margin-left: 2%; font-size: 30px;">Trash</label></div>
+         
+         <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 80px; background-color: white; border-color: black; border-radius: 5px;"><option>Type</option></select>
+         <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 90px; background-color: white; border-color: black; border-radius: 5px;"><option>Modifed</option></select><br>
+         <div style=" height: 40px; width: 985px; background-color: #e3e3e3; border-radius: 5px; font-size: 12px; margin-left: 2%; margin-right: 2%; margin-top: 2%;"><label style="font-size: 15px; margin-left: 15px; margin-top: 5.5px;"> Items in Trash Will be deleted permanently after 30 days</label></div>
+         
+         
+           <br>
+          <table >
+          <thead >
+            <tr>
+                <th>Name        </th>
+                <th>Owner       </th>
+                <th>Last Modified</th>
+                <th>File Size</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="data in bins">
+                <td>{{ data.file_name }}{{data.folder_name}}</td>
+                <td>{{ data.owner__first_name }}</td>
+                <td>{{data.binned_date }}</td>
+                <td>{{data.file_size_kb }} </td>
+          <td><i ng-click="Repet(data.id)" onclick="document.getElementById('Restore').style.display='block'"  class="bi bi-bootstrap-reboot"></i>    <i ng-click="Delete(data.id)" onclick="document.getElementById('Delete').style.display='block'" class="bi bi-trash"></i></td>
+            </tr>
+        </tbody>
+         </table></div>
+
+         <div id="Restore" class="w3-modal" style="text-align: center; align-items: center; border-radius: 20px; ">
+          <div class="w3-modal-content" style="height: 200px; width: 30%;  border-radius: 10px;">
+            <div class="w3-container" >
+              <br>
+              <span onclick="document.getElementById('Restore').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+              <div style="margin-left: -60%;"><label style="font-size: 25px;">Restore</label></div><br>
+              <div ><label>You Want To Restore Your File</label></div><br>
+              <div style="margin-left: 43%;"><button class="btn btn-primary" onclick="document.getElementById('Restore').style.display='none'" style="background-color: white; border-radius: 20px; color: #4285f4;">Cancel</button>   <button class="btn btn-primary" style="width: 30%; border-radius: 20px; margin-left: 5%;" ng-click="Rest()" onclick="document.getElementById('Restore').style.display='none'">Ok</button></div><br>
+            </div>
+          </div>
+        </div>
+
+        <div id="Delete" class="w3-modal" style="text-align: center; align-items: center; border-radius: 20px; ">
+          <div class="w3-modal-content" style="height: 200px; width: 30%;  border-radius: 10px;">
+            <div class="w3-container" >
+              <br>
+              <span onclick="document.getElementById('Delete').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+              <div style="margin-left: -60%;"><label style="font-size: 25px;">Trash</label></div><br>
+              <div ><label>You Want To Delete Yuor File permanently</label></div><br>
+              <div style="margin-left: 43%;"><button class="btn btn-primary" onclick="document.getElementById('Delete').style.display='none'" style="background-color: white; border-radius: 20px; color: #4285f4;">Cancel</button>   <button class="btn btn-primary" style="width: 30%; border-radius: 20px; margin-left: 5%;" ng-click="Dlt()" onclick="document.getElementById('Delete').style.display='none'">Ok</button></div><br>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+        <div ng-show="showstoragecontent">
+         <div> <label style="margin-top: 1.5%; margin-left: 2%; font-size: 30px;">Storage</label></div>
+         <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 80px; background-color: white; border-color: black; border-radius: 5px;"><option>Type</option></select>
+         <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 90px; background-color: white; border-color: black; border-radius: 5px;"><option>Modified</option></select>
+         <div ><br>
+          <div style="margin-left: 5%;"><label style="font-size: 25px;">{{storage}}</label>   <label style="font-size: 18px;">used of 1.00 MB</label></div>
+          <div style="height: 10px; width: 900px; background-color: #f2f2f2; margin-left: 5%; margin-top: 3%; border-radius: 10px;"><div ng-style="{ 'width' : width, 'background' : bgColor }" style="height: 10px; background-color: rgb(189, 189, 49); border-radius: 10px;"></div></div></div><br><br>
+         <div> <div style="border-radius: 50px; height: 16px; width: 16px; margin-left: 5%; background-color: rgb(189, 189, 49);"></div> <div style="margin-top: -2.2%;"><label style=" margin-left: 8%;  font-size: 20px;">Storage Used</label></div> </div><br>
+         <div> <div style="border-radius: 50px; height: 16px; width: 16px; margin-left: 5%; background-color:  #f2f2f2;"></div> <div style="margin-top: -2.2%;"><label style=" margin-left: 8%;  font-size: 20px;">Storage Available</label></div> </div>
+
+        </div>
         </div> 
+        </div>
+
+
+
         <div style="margin-left: 95.7%; margin-top: -42%;">
         <div ng-repeat="image in images">
           <image style="height: 22px; width: 22px; margin-bottom: 60%;" src="{{image.icon}}"></image>

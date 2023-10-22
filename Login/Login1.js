@@ -5,6 +5,7 @@ myApp.controller("Login1Controller", [
   "UserDataService",
   function ($scope, $http,$state ,UserDataService) {
     $scope.login = function () {
+      if($scope.password == null ){Swal.fire('Please enter  valid password')}else{
       var email = UserDataService.getEmail();
       var password = $scope.password;
 
@@ -16,19 +17,21 @@ myApp.controller("Login1Controller", [
 
         $http({
           method: "POST",
-          url: "https://10.21.87.8:8000/api/login_view/",
+          url: ip + 'api/login_view/',
           data: data,
           withCredentials: true,
         })
         .then(function (response) {
           console.log("Response from server:", response.data);
+          Swal.fire('Login Successful')
           $state.go("Drive");
         })
         .catch(function (error) {
           console.error("Error:", error);
+          Swal.fire('Login Unsuccessful');
         });
 
-      UserDataService.clearData();
+      UserDataService.clearData();}
     };
   },
 ]);
