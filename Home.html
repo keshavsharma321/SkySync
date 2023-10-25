@@ -20,69 +20,85 @@
   </head>
   <style>
     #image {
-      height: 45px;
-      width: 65px;
-      margin-top: 13px;
-      margin-left: 13px;
+        height: 3rem;
+        width: 65px;
+        margin-top: 13px;
+        margin-left: 13px;
     }
-    #div2{
-      margin-top: 12px;
-      margin-left: -2px;
-    }
-    #sky{
-      font-size: 20px;
-    }
-    #secure{
-      font-size: 60px;
-    }
-    #Store{
-      font-size: 21px;
-      color: #5f6368;
-    }
-    #try{
-      height:120% ;
-      margin-left: 50px;
-    }
-    #primary{
-      height:120% ;
-      margin-left: 20px;
-      background-color: white;
-      color: #0d6efd;
-      width: 110%;
-    }
-    #img{
-      width: 100%;
-      margin-top: 90px;
-    }
-    #img1{
-      width: 600px ;
-      height: 600px;
-      margin-left:60px;
-    }
-    #text{
-      margin-left: 100px;
-      width: 550px;
-    }
-    #img2{
-      width: 600px ;
-      height: 600px;
-    }
-    #img3{
-      width: 500px ;
-      height: 400px;
-      margin-left: 70px;
-    }
-    #split{
 
-      margin-top: 8%;
-      height: 400px;
-      width: 88%;
-      margin-left: 6%;
-      margin-right: 6%;
-      background-color: #f8f9fa;
+    #div2 {
+        margin-top: 12px;
+        margin-left: -2px;
     }
-  </style>
+
+    #sky {
+        font-size: 20px;
+    }
+
+    #secure {
+        font-size: 60px;
+    }
+
+    #Store {
+        font-size: 21px;
+        color: #5f6368;
+    }
+
+    #try {
+        height: 120%;
+        margin-left: 50px;
+    }
+
+    #primary {
+        height: 120%;
+        margin-left: 20px;
+        background-color: white;
+        color: #0d6efd;
+        width: 110%;
+    }
+
+    #img {
+        width: 100%;
+        margin-top: 90px;
+    }
+
+    #img1 {
+        width: 100%;
+        height: auto;
+    }
+
+    #text {
+        width: 100%;
+        margin-left: 10px;
+    }
+
+    #split {
+        margin-top: 8%;
+        min-height: 400px;
+        width: 100%;
+        background-color: #f8f9fa;
+    }
+
+    @media (min-width: 768px) {
+        #div2 {
+            margin-left: 0;
+        }
+
+        #try {
+            margin-left: 10%;
+        }
+
+        #primary {
+            margin-left: 15%;
+        }
+
+        #img {
+            margin-top: 60px;
+        }
+    }
+</style>
 <body>
+  <div id="main">
   <div style="height:65px; width: 1320px; border: 1px solid #dadce0; display: flex; position: fixed; background-color: white;">
   <div style="margin-top: 1.2%; margin-left: 2%;"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="25" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
     <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
@@ -299,6 +315,6 @@
 
 
   
-
+</div>
 </body>
 </html>

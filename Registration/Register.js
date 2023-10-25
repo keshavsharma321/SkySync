@@ -7,7 +7,7 @@ myApp.controller('RegistrationController', function($scope, $state,$http , Regis
   })
   .catch(function (error) {
     console.error("Error fetching Gender: " + error);
-  }); 
+  });   
 
 
   $scope.user = {};

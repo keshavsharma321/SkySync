@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
@@ -19,94 +19,123 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
     />
-  </head>
-  <style>
+</head>
+<style>
     #main {
-      height: 500px;
-      width: 35%;
-      border: 1px solid #dadce0;
-      margin-top: 5.5%;
-      margin-left: 32.5%;
-      border-radius: 10px;
+        width: 100%;
+        max-width: 30rem;
+        border: 1px solid #dadce0;
+        margin: 5.5% auto;
+        border-radius: 10px;
+        padding: 20px;
     }
+
     #Logo {
-      margin-top: 12%;
-      margin-left: 40%;
+        text-align: center;
+        margin-top: 12%;
     }
+
     #Name {
-      margin-top: 2%;
-      margin-left: 21.5%;
+        text-align: center;
+        margin-top: 2%;
     }
-    #FName {
-      margin-top: 9%;
-      margin-left: 8%;
-      width: 83.5%;
-      height: 10%;
+
+    #FName, #LName {
+        width: 100%;
+        margin-top: 20px;
     }
-    #LName {
-      margin-top: 9%;
-      margin-left: 8%;
-      width: 83.5%;
-      height: 10%;
-    }
+
     #pswd {
-      margin-left: 32%;
-      margin-top: 2%;
+        text-align: center;
+        margin-top: 2%;
     }
+
     #Register {
-      margin-top: 9%;
-      margin-left: 41%;
+        text-align: center;
+        margin-top: 20px;
     }
-  </style>
-  <body>
-    <div id="main">
-      <div>
+
+    @media (max-width: 768px) {
+        #main {
+            max-width: 80%;
+        }
+
+        #Logo label {
+            font-size: 25px;
+        }
+
+        #Name label {
+            font-size: 22px;
+        }
+
+        #pswd label {
+            font-size: 18px;
+        }
+
+        #FName input, #LName input {
+            height: 45px;
+        }
+
+        #Register button {
+            margin-top: 15px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        #main {
+            max-width: 90%;
+        }
+    }
+</style>
+<body>
+<div id="main">
+    <div>
         <div id="Logo">
-          <label style="font-size: 25px; color: #4285f4">S</label
-          ><label style="font-size: 23px; color: #ea4335">k</label
-          ><label style="font-size: 23px; color: #fbbc05">y</label
-          ><label style="font-size: 25px; color: #4285f4">S</label
-          ><label style="font-size: 23px; color: #34a853">y</label
-          ><label style="font-size: 23px; color: #fbbc05">n</label
-          ><label style="font-size: 23px; color: #ea4335">c</label>
+            <label style="font-size: 25px; color: #4285f4">S</label>
+            <label style="font-size: 23px; color: #ea4335">k</label>
+            <label style="font-size: 23px; color: #fbbc05">y</label>
+            <label style="font-size: 25px; color: #4285f4">S</label>
+            <label style="font-size: 23px; color: #34a853">y</label>
+            <label style="font-size: 23px; color: #fbbc05">n</label>
+            <label style="font-size: 23px; color: #ea4335">c</label>
         </div>
         <div id="Name">
-          <label style="font-size: 22px">Create a Strong Password</label>
+            <label style="font-size: 22px">Create a Strong Password</label>
         </div>
         <div id="pswd">
-          <label style="font-size: 18px">Enter Your Password</label>
+            <label style="font-size: 18px">Enter Your Password</label>
         </div>
         <div id="FName" class="input-group mb-3">
-          <input
-            type="password"
-            class="form-control"
-            placeholder="Password"
-            aria-label="Password"
-            aria-describedby="basic-addon1"
-            ng-model="password"
-            required
-          />
+            <input
+                type="password"
+                class="form-control"
+                placeholder="Password"
+                aria-label="Password"
+                aria-describedby="basic-addon1"
+                ng-model="password"
+                required
+            />
         </div>
         <div id="LName" class="input-group mb-3">
-          <input
-            type="password"
-            class="form-control"
-            placeholder="Confirm Password"
-            aria-label="Confirm Password"
-            aria-describedby="basic-addon1"
-            ng-model="confirmpassword"
-            required
-          />
+            <input
+                type="password"
+                class="form-control"
+                placeholder="Confirm Password"
+                aria-label="Confirm Password"
+                aria-describedby="basic-addon1"
+                ng-model="confirmpassword"
+                required
+            />
         </div>
-        <div style="margin-left: 9%; margin-top: 3%">
-          <input type="checkbox" /> Show Password
+        <div style="text-align: center; margin-top: 3%">
+            <input type="checkbox" /> Show Password
         </div>
         <div id="Register">
-          <button type="button" class="btn btn-primary" ng-click="drive()">
-            Next
-          </button>
+            <button type="button" class="btn btn-primary" ng-click="drive()">
+                Next
+            </button>
         </div>
-      </div>
     </div>
-  </body>
+</div>
+</body>
 </html>

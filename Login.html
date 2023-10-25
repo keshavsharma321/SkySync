@@ -1,123 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="./node_modules/angular/angular.min.js"></script>
     <script src="./node_modules/@uirouter/angularjs/release/angular-ui-router.js"></script>
     <script src="./node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
-    />
-    <link
-      rel="stylesheet"
-      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
-    />
-  </head>
-  <style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<style>
     #main {
-      height: 32.25rem ;
-      width: 30rem;
-      border: 0.0625rem solid #dadce0;
-      margin-top: 5.5%;
-      margin-left: 32.5%;
-      border-radius: 0.625rem ;
+        width: 30rem;
+        border: 0.0625rem solid #dadce0;
+        border-radius: 0.625rem;
+        margin: 5.5% auto;
+        padding: 20px;
     }
+
     #Logo {
-      margin-top: 12%;
-      margin-left: 40%;
+        text-align: center;
+        margin-top: 12%;
     }
+
     #Email {
-      margin-left: 7.125rem;
-      margin-top: 2%;
+        text-align: center;
+        margin-top: 2%;
     }
+
     #Gmail {
-      margin-top: 2%;
-      margin-left: 42%;
+        text-align: center;
+        margin-top: 2%;
     }
-    #FName {
-      margin-top: 9%;
-      margin-left: 8%;
-      width: 83.5%;
-      height: 10%;
+
+    #FName, #LName {
+        width: 83.5%;
+        margin: 9% auto;
     }
-    #LName {
-      margin-top: 9%;
-      margin-left: 8%;
-      width: 83.5%;
-      height: 10%;
-    }
+
     #button {
-      margin-top: 9%;
-      margin-left: 49%;
+        text-align: center;
+        margin-top: 9%;
     }
-  </style>
-  <body>
+
+    @media (max-width: 768px) {
+        #main {
+            width: 80%;
+        }
+
+        #Logo label {
+            font-size: 1.375rem;
+        }
+
+        #Gmail label {
+            font-size: 1.25rem;
+        }
+
+        #Email label {
+            font-size: 1.125rem;
+        }
+
+        #FName, #LName {
+            margin: 8% auto;
+        }
+
+        #button {
+            text-align: center;
+            margin-top: 9%;
+        }
+    }
+
+    @media (max-width: 576px) {
+        #main {
+            width: 85%;
+        }
+    }
+</style>
+<body>
+<div id="main">
     <div>
-    <div id="main">
-      <div>
         <div id="Logo">
-          <label style="font-size: 1.5625rem; color: #4285f4">S</label
-          ><label style="font-size: 1.4375rem; color: #ea4335">k</label
-          ><label style="font-size: 1.4375rem; color: #fbbc05">y</label
-          ><label style="font-size: 1.5625rem; color: #4285f4">S</label
-          ><label style="font-size: 1.4375rem; color: #34a853">y</label
-          ><label style="font-size: 1.4375rem; color: #fbbc05">n</label
-          ><label style="font-size: 1.4375rem; color: #ea4335">c</label>
+            <label style="font-size: 1.5625rem; color: #4285f4">S</label
+            ><label style="font-size: 1.4375rem; color: #ea4335">k</label
+            ><label style="font-size: 1.4375rem; color: #fbbc05">y</label
+            ><label style="font-size: 1.5625rem; color: #4285f4">S</label
+            ><label style="font-size: 1.4375rem; color: #34a853">y</label
+            ><label style="font-size: 1.4375rem; color: #fbbc05">n</label
+            ><label style="font-size: 1.4375rem; color: #ea4335">c</label>
         </div>
         <div id="Gmail">
-          <label style="font-size: 1.375rem">Sign in </label>
+            <label style="font-size: 1.375rem">Sign in </label>
         </div>
         <div id="Email">
-          <label style="font-size: 1.125rem"
-            >to Continue to Google SkySync</label
-          >
+            <label style="font-size: 1.125rem"
+                >to Continue to Google SkySync</label
+            >
         </div>
         <div id="FName" class="input-group mb-3">
-          <input
-            type="email"
-            class="form-control"
-            placeholder="Email"
-            aria-label="Email"
-            aria-describedby="basic-addon1"
-            ng-model="email"
-            type="email"
-            required
-          />
+            <input
+                type="email"
+                class="form-control"
+                placeholder="Email"
+                aria-label="Email"
+                aria-describedby="basic-addon1"
+                ng-model="email"
+                type="email"
+                required
+            />
         </div>
-        <div style="margin-left: 8.3%; margin-top: -1.5%">
-          <label style="color: #4285f4; font-size: 1 rem">Forgot email ?</label>
+        <div style="text-align: center; margin-top: -1.5%">
+            <label style="color: #4285f4; font-size: 1rem">Forgot email ?</label>
         </div>
-        <div style="margin-left: 8.3%; margin-top: 8%">
-          <label style="color: #5f6368; font-size: 0.9375rem"
-            >Not your computer? Use a Private Window to sign in.
-          </label>
+        <div style="text-align: center; margin-top: 8%">
+            <label style="color: #5f6368; font-size: 0.9375rem"
+                >Not your computer? Use a Private Window to sign in.
+            </label>
         </div>
-        <div style="margin-left: 8.3%; margin-top: -0.5%">
-          <label style="color: #4285f4; font-size: 1rem">Learn more</label>
+        <div style="text-align: center; margin-top: -0.5%">
+            <label style="color: #4285f4; font-size: 1rem">Learn more</label>
         </div>
 
-        <div style="display: flex; margin-left: 2.375rem">
-          <div>
-            <label ui-sref="Register" style="color: #4285f4; margin-top: 40%"
-              >Create Account</label
-            >
-          </div>
-          <div id="button">
-            <button type="button" class="btn btn-primary" ng-click="next()">
-              Next
-            </button>
-          </div>
-          <br />
+        <div style="display: flex; justify-content: space-between; margin: 8% auto;">
+            <div>
+                <label ui-sref="Register" style="color: #4285f4">Create Account</label>
+            </div>
+            <div id="button">
+                <button type="button" class="btn btn-primary" ng-click="next()">
+                    Next
+                </button>
+            </div>
         </div>
-      </div>
     </div>
-    </div>
-  </body>
+</div>
+</body>
 </html>
