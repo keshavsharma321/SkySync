@@ -61,7 +61,7 @@
       height: 57px; width: 100px; background-color: white;
     }
     #main{
-      height: 570px;
+      height: 100%;
       width: 1030px;
       background-color: white;
       margin-top: 10px;
@@ -107,13 +107,13 @@ th, td {
   padding-left: 35px;
   padding-right: 20px;
 }
-.icon-container i {
+/* .icon-container i {
   visibility: hidden; 
 }
 
 .icon-container:hover i {
   visibility: visible; 
-}
+} */
 .setting-icon {
     display: inline-block;
     position: relative;
@@ -210,32 +210,16 @@ label svg {
           
           <div id="profile">
 
-            <div ng-repeat="data in Users" >
+            <!-- <div ng-repeat="data in Users" >
                 <div ng-click="fetchprofile(data.first_name , data. last_name)"></div>
-            </div>
-<!-- 
-          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
-            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
-          </svg> -->
-        
+            </div> -->
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+              <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+            </svg>
         
         
         </div>
-          <!-- <div id="ICONS" class="w3-modal" style="text-align: center; align-items: center; border-radius: 20px; ">
-            <div class="w3-modal-content" style="height: 250px; width: 25%;  border-radius: 10px;">
-              <div class="w3-container" >
-                <br>
-                <span onclick="document.getElementById('ICONS').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-                <div ng-repeat="data in images" >
-                  <div>
-                 <div> <image style="height: 40px; width: 40px;" src="{{data.icon}}"></image></div>
-                 <div> <a href="{{data.state}}">{{data.option}}</a> </div>
-                  </div>
-                </div>
-              </div>
-              
-          </div>
-          </div> -->
       
         </div>
         <div id="ICONS" class="w3-modal" style="display: none;">
@@ -321,12 +305,12 @@ label svg {
           
          <div ng-show="showdrivecontent">
          <div> <label style="margin-top: 1.5%; margin-left: 2%; font-size: 30px;"> My Drive</label></div>
-         <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 80px; background-color: white; border-color: black; border-radius: 5px;"><option>Type</option></select>
-         <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 90px; background-color: white; border-color: black; border-radius: 5px;"><option>Modifed</option></select>
-         <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 80px; background-color: white; border-color: black; border-radius: 5px;"><option>People</option></select>
+         <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 80px; background-color: white;  border-radius: 7px; border: 1px solid black ;"><option>Type</option></select>
+         <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 90px; background-color: white; border: 1px solid black ; border-radius: 7px;"><option>Modifed</option></select>
+         <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 80px; background-color: white; border: 1px solid black ; border-radius: 7px;"><option>People</option></select>
          <div> <label style="margin-top: 1.5%; margin-left: 2%; font-size: 15px;">Suggested</label></div> <br>
          <div  style="display: flex; ">
-           <div style="height: 150px; width: 260px;  border: 1.5px solid black; border-radius: 5px; margin-left: 2%;" ng-repeat="suggest in suggested"><h6 style="font-size: 13px; margin-left: 2%; margin-top: 2%;">{{suggest.file_name}}</h6></div> 
+          <div style="height: 160px; width:100%;  border: 5px solid rgb(236, 232, 232); border-radius: 5px; margin-left: 2%; background-color: rgb(236, 232, 232);" ng-repeat="suggest in suggested"><h6 style="font-size: 13px; margin-left: 2%; margin-top: 2%; background-color: rgb(236, 232, 232);">{{suggest.file_name}}</h6><image style="height: 82%; width: 100%;  border-radius: 5px;" ng-src="https://10.21.84.138:8000/media/{{suggest.file_name}}"></image></div> 
           </div>
           <br>
           <table >
@@ -339,7 +323,7 @@ label svg {
               </tr>
           </thead>
           <tbody>
-              <tr  ng-repeat="data in files">
+              <tr  ng-repeat="data in files ">
                   <td><i ng-click=" folder(data.id , data.file_name , data.folder_name) "  class="{{data.icon}}"></i></td>
                  <td> <div ng-click=" folder(data.id , data.file_name , data.folder_name) " >{{ data.file_name }}{{data.folder_name}}</div></td>
                   <td>{{ data.owner__first_name }}</td>
@@ -348,14 +332,18 @@ label svg {
                   <td > 
           
  
-                    <div style="display: flex;" class="icon-container"> <div><i ng-click="shared(data.id)" onclick="document.getElementById('shared').style.display='block'" class="bi bi-person"></i></div>  <div style="margin-left: 10px;"><i class="bi bi-download"></i></div>  <div ng-click="RENAMED(data.id)" onclick="document.getElementById('rename').style.display='block'" style="margin-left: 10px;"><i  class="bi bi-pen"></i></div> 
+                    <div style="display: flex;" class="icon-container"> <div><i ng-click="shared(data.id)" onclick="document.getElementById('shared').style.display='block'" class="bi bi-person"></i></div>  <div style="margin-left: 10px;"><i ng-click="downloadFile(data.file_name)" class="bi bi-download"></i></div>  <div ng-click="RENAMED(data.id)" onclick="document.getElementById('rename').style.display='block'" style="margin-left: 10px;"><i  class="bi bi-pen"></i></div> 
                     
-                    <!-- <div ng-click="handleclick(data.id ,  data.starred)" style="margin-left: 10px; display: flex;"> <div ng-show="showuncolured1[id]"> <i   class="bi bi-star"></i></div><div ng-show="showcolured1[id]" ><i  class="bi bi-star-fill"></i></div></div>  -->
-
-                    <div ng-click="handleclick(data.id, data.starred)" style="margin-left: 10px; display: flex;">
-                      <div ng-show="showuncolured1[data.id] "><i class="bi bi-star"></i></div>
-                      <div ng-show="showcolured1[data.id]"><i class="bi bi-star-fill"></i></div>
+                    <div ng-click="handleClick(data.id, data.starred)" style="margin-left: 10px; display: flex;">
+                      <div ng-show="showUncoloured1[data.id]  "><i class="bi bi-star"></i></div>
+                      <div ng-show="showColoured1[data.id] "><i class="bi bi-star-fill"></i></div>
                     </div>
+                    
+
+                    <!-- <div ng-click="handleclick(data.id, data.starred)" style="margin-left: 10px; display: flex;">
+                      <div ng-show="showuncolured1[data.id]= true"><i class="bi bi-star"></i></div>
+                      <div ng-show="showcolured1[data.id]"><i class="bi bi-star-fill"></i></div>
+                    </div> -->
                     
                     
                     <div style="margin-left: 10px;" ><i onclick="document.getElementById('bin').style.display='block'" ng-click="bin(data.id)" class="bi bi-trash"></i></div>  </div> </td>
@@ -363,6 +351,42 @@ label svg {
           </tbody>
            </table>
            </div>
+             
+
+           <!-- <object
+           ng-if="pdfs"
+           data="{{pdfs}}"
+           type="application/pdf"
+           width="100%"
+           height="500px"
+         ></object> -->
+
+
+
+
+
+
+          <div id="photo" class="w3-modal" style="text-align: center; align-items: center; border-radius: 20px; ">
+        
+              <div class="w3-container" >
+                
+                <span onclick="document.getElementById('photo').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+               
+                <div>
+                  <object
+           
+           data="{{pdfs}}"
+           type="application/pdf"
+           width="100%"
+           height="500px"
+         ></object>
+                 </div><br>
+              </div>
+        
+          </div>
+
+
+
 
 
            <div ng-show="shownestedcontent">
@@ -380,8 +404,8 @@ label svg {
             </thead>
             <tbody>
                 <tr  ng-repeat="data in insidefolder">
-                    <td><i ng-click=" folder(data.id) "  class="{{data.icon}}"></i></td>
-                   <td> <div ng-click=" folder(data.id) " >{{ data.file_name }}{{data.folder_name}}</div></td>
+                    <td><i ng-click=" folder(data.id , data.file_name , data.folder_name) "  class="{{data.icon}}"></i></td>
+                   <td> <div ng-click=" folder(data.id , data.file_name , data.folder_name) " >{{ data.file_name }}{{data.folder_name}}</div></td>
                     <td>{{ data.owner__first_name }}</td>
                     <td>{{data.last_modified }}</td>
                     <td>{{ data.file_size_kb}} </td>
@@ -465,9 +489,9 @@ label svg {
         <div ng-show="showsharedcontent">
          <div> <label style="margin-top: 1.5%; margin-left: 2%; font-size: 30px;">Shared</label></div>
 
-          <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 80px; background-color: white; border-color: black; border-radius: 5px;"><option>Type</option></select>
-          <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 90px; background-color: white; border-color: black; border-radius: 5px;"><option>Modifed</option></select>
-          <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 80px; background-color: white; border-color: black; border-radius: 5px;"><option>People</option></select>
+          <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 80px; background-color: white; border: 1px solid black ; border-radius: 5px;"><option>Type</option></select>
+          <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 90px; background-color: white; border: 1px solid black ; border-radius: 5px;"><option>Modifed</option></select>
+          <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 80px; background-color: white; border: 1px solid black ; border-radius: 5px;"><option>People</option></select>
       
 
           <table >
@@ -491,9 +515,9 @@ label svg {
         <div ng-show="showrecentcontent">
          <div> <label style="margin-top: 1.5%; margin-left: 2%; font-size: 30px;">Recent</label></div>
 
-          <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 80px; background-color: white; border-color: black; border-radius: 5px;"><option>Type</option></select>
-          <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 90px; background-color: white; border-color: black; border-radius: 5px;"><option>Modifed</option></select>
-          <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 80px; background-color: white; border-color: black; border-radius: 5px;"><option>People</option></select>
+          <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 80px; background-color: white; border: 1px solid black ; border-radius: 5px;"><option>Type</option></select>
+          <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 90px; background-color: white; border: 1px solid black ; border-radius: 5px;"><option>Modifed</option></select>
+          <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 80px; background-color: white; border: 1px solid black ; border-radius: 5px;"><option>People</option></select>
     
 
           <table>
@@ -519,9 +543,9 @@ label svg {
         <div ng-show="showstarredcontent">
          <div> <label style="margin-top: 1.5%; margin-left: 2%; font-size: 30px;">Starred</label></div>
 
-         <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 80px; background-color: white; border-color: black; border-radius: 5px;"><option>Type</option></select>
-         <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 90px; background-color: white; border-color: black; border-radius: 5px;"><option>Modifed</option></select>
-         <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 80px; background-color: white; border-color: black; border-radius: 5px;"><option>People</option></select>
+         <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 80px; background-color: white; border: 1px solid black ; border-radius: 5px;"><option>Type</option></select>
+         <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 90px; background-color: white; border: 1px solid black ; border-radius: 5px;"><option>Modifed</option></select>
+         <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 80px; background-color: white; border: 1px solid black ; border-radius: 5px;"><option>People</option></select>
 
           <table >
             <thead >
@@ -553,8 +577,8 @@ label svg {
         <div ng-show="showbincontent">
          <div> <label style="margin-top: 1.5%; margin-left: 2%; font-size: 30px;">Trash</label></div>
          
-         <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 80px; background-color: white; border-color: black; border-radius: 5px;"><option>Type</option></select>
-         <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 90px; background-color: white; border-color: black; border-radius: 5px;"><option>Modifed</option></select><br>
+         <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 80px; background-color: white; border: 1px solid black ; border-radius: 5px;"><option>Type</option></select>
+         <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 90px; background-color: white; border: 1px solid black ; border-radius: 5px;"><option>Modifed</option></select><br>
          <div style=" height: 40px; width: 985px; background-color: #e3e3e3; border-radius: 5px; font-size: 12px; margin-left: 2%; margin-right: 2%; margin-top: 2%;"><label style="font-size: 15px; margin-left: 15px; margin-top: 5.5px;"> Items in Trash Will be deleted permanently after 30 days</label></div>
          
          
@@ -609,8 +633,8 @@ label svg {
 
         <div ng-show="showstoragecontent">
          <div> <label style="margin-top: 1.5%; margin-left: 2%; font-size: 30px;">Storage</label></div>
-         <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 80px; background-color: white; border-color: black; border-radius: 5px;"><option>Type</option></select>
-         <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 90px; background-color: white; border-color: black; border-radius: 5px;"><option>Modified</option></select>
+         <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 80px; background-color: white; border: 1px solid black ; border-radius: 5px;"><option>Type</option></select>
+         <select style="margin-top: 1%; margin-left: 2%; height: 30px; width: 90px; background-color: white; border: 1px solid black ; border-radius: 5px;"><option>Modified</option></select>
          <div ><br>
           <div style="margin-left: 5%;"><label style="font-size: 25px;">{{storage}}</label>   <label style="font-size: 18px;">used of 5.00 GB</label></div>
           <div style="height: 10px; width: 900px; background-color: #f2f2f2; margin-left: 5%; margin-top: 3%; border-radius: 10px;"><div ng-style="{ 'width' : width, 'background' : bgColor }" style="height: 10px; background-color: rgb(189, 189, 49); border-radius: 10px;"></div></div></div><br><br>
@@ -623,7 +647,7 @@ label svg {
 
 
 
-        <div style="margin-left: 95.7%; margin-top: -42%;">
+        <div style="margin-left: 95.7%; margin-top: -68%;">
         <div ng-repeat="image in pixels">
           <image style="height: 22px; width: 22px; margin-bottom: 60%;" src="{{image.icon}}"></image>
           </div> 

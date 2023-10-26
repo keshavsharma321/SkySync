@@ -2,46 +2,47 @@ myApp.controller("DriveController", [
   "$scope",
   "$state",
   "$http",
-  function ($scope, $state, $http) {
+  "$sce",
+  function ($scope, $state, $http , $sce) {
     
 
-    $http({
-      method: "GET",
-      url: ip + 'api/profile_pic/',
-      withCredentials: true,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then(
-      function (Response) {
-        console.log("User Data", Response.data);
-        $scope.Users = Response.data;
+    // $http({
+    //   method: "GET",
+    //   url: ip + 'api/profile_pic/',
+    //   withCredentials: true,
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // }).then(
+    //   function (Response) {
+    //     console.log("User Data", Response.data);
+    //     $scope.Users = Response.data;
              
-        // 'https://ui-avatars.com/api/?background=random&name=Keshav+Sharma'
+    //     // 'https://ui-avatars.com/api/?background=random&name=Keshav+Sharma'
         
-          $http({
-            method: "GET",
-            url: 'https://ui-avatars.com/api/?name=John+Doe',
-            withCredentials: true,
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }).then(
-            function (Response) {
-              console.log("Fetched Data", Response.data);
-              $scope.images = Response.data;
-              console.log(images);
-            },
-            function (Error) {
-              console.error("Failed to fetch data", Error);
-            }
-          );
+    //       $http({
+    //         method: "GET",
+    //         url: 'https://ui-avatars.com/',
+    //         withCredentials: true,
+    //         headers: {
+    //           "Content-Type": "application/json",
+    //         },
+    //       }).then(
+    //         function (Response) {
+    //           console.log("Fetched Data", Response.data);
+    //           $scope.images = Response.data;
+    //           console.log(images);
+    //         },
+    //         function (Error) {
+    //           console.error("Failed to fetch data", Error);
+    //         }
+    //       );
 
-      },
-      function (Error) {
-        console.error("Failed to fetch data", Error);
-      }
-    )
+    //   },
+    //   function (Error) {
+    //     console.error("Failed to fetch data", Error);
+    //   }
+    // )
     
 
     $scope.ok = function(){
@@ -49,51 +50,71 @@ myApp.controller("DriveController", [
       $scope.shownestedcontent = false;
       
     }
-    
-    $scope.folder = function(id , file_name , folder_name){
-      console.log(id,file_name,folder_name);
-      if(file_name == null){
-      var folder_name = folder_name;
-      var data = { id : id } ;
-      console.log(data);
 
-      $http({
-        method: "POST",
-        url: ip + 'api/inside_folder/',
-        withCredentials: true,
-        data : data,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }).then(
-        function (Response) {
-          console.log("Fetched Data", Response.data);
-          $scope.insidefolder = Response.data;
-          console.log($scope.insidefolder);
-          $scope.showdrivecontent = false;
-          $scope.shownestedcontent = true;
-          
-        },
-        function (Error) {
-          console.error("Failed to fetch data", Error);
-        }
-      )}else{
-        var file_name = file_name;
-        var data = { id: id};
+    $scope.folder = function (id, file_name, folder_name) {
+      console.log(id, file_name, folder_name);
+    
+      if (file_name == null) {
+        var folder_name = folder_name;
+        var data = { id: id };
         console.log(data);
-      
+    
         $http({
-          method:"GET",
-          url: ip + 'api/media/' + file_name,
-        })
-        .then(
-          function(Response){
-            console.log("Fetched",Response.data);
+          method: "POST",
+          url: ip + 'api/inside_folder/',
+          withCredentials: true,
+          data: data,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }).then(
+          function (Response) {
+            console.log("Fetched Data", Response.data);
+            $scope.insidefolder = Response.data;
+            console.log($scope.insidefolder);
+            $scope.showdrivecontent = false;
+            $scope.shownestedcontent = true;
+          },
+          function (Error) {
+            console.error("Failed to fetch data", Error);
           }
-        )
+        );
+      } else {
+        var file_name = file_name;
+
+
+
+        $http({
+          method: "GET",
+          url: ip + 'api/media/' + file_name,
+          withCredentials: true,
+          responseType: "arraybuffer",
+        }).then(
+          function (response) {
+            console.log("Pdf data fetched", response.data);
+
+            var blob = new Blob([response.data], {
+              type: "application",
+            });
+            var url = URL.createObjectURL(blob);
+
+            $scope.pdfs = url;
+            openpdf();
+          },
+          function (error) {
+            console.log("Data not fetched", error);
+          }
+        );
 
       }
-    }
+    };
+    
+
+     openpdf = function () {
+      document.getElementById("photo").style.display = "block";
+  };
+  
+  
 
     $scope.dots = function(){
     $http({
@@ -112,6 +133,9 @@ myApp.controller("DriveController", [
         console.error("Failed to fetch data", Error);
       }
     )};
+
+
+
     $http({
       method: "GET",
       url: ip + 'api/left_panel/',
@@ -250,72 +274,76 @@ myApp.controller("DriveController", [
 
 
 
-$scope.showuncolured1 = {}; 
-$scope.showcolured1 = {};  
 
-$scope.handleclick = function(id, starred) {
-  console.log(id, starred);
 
-  if (starred === false) {
-    var data = {
-      "id": id,
-      "star": "true",
-    };
-    console.log(data);
-    $http({
-      method: "POST",
-      url: ip + 'api/starred/',
-      data: data,
-      withCredentials: true,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then(
-      function (Response) {
-        console.log("Fetched Data", Response.data);
-        showcoloured(id);
-      },
-      function (Error) {
-        console.error("Failed to fetch data", Error);
-      }
-    );
-  } else {
-    var data = {
-      "id": id,
-      "star": "False",
-    };
-    console.log(data);
-    $http({
-      method: "POST",
-      url: ip + 'api/starred/',
-      data: data,
-      withCredentials: true,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then(
-      function (Response) {
-        console.log("Fetched Data", Response.data);
-        showuncoloured(id);
-      },
-      function (Error) {
-        console.error("Failed to fetch data", Error);
-      }
-    );
-  }
-}
 
-function showcoloured(id) {
-  console.log(id);
-  $scope.showcolured1[id] = true;
-  $scope.showuncolured1[id]  = false;
-}
+// $scope.showuncolured1 = {}; 
+// $scope.showcolured1 = {};  
 
-function showuncoloured(id) {
-  console.log(id);
-  $scope.showcolured1[id] = false;
-  $scope.showuncolured1[id] = true;
-}
+// $scope.handleclick = function(id, starred) {
+//   console.log(id, starred);
+
+//   if (starred === false) {
+//     var data = {
+//       "id": id,
+//       "star": "true",
+//     };
+//     console.log(data);
+//     $http({
+//       method: "POST",
+//       url: ip + 'api/starred/',
+//       data: data,
+//       withCredentials: true,
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//     }).then(
+//       function (Response) {
+//         console.log("Fetched Data", Response.data);
+//         showcoloured(id);
+//       },
+//       function (Error) {
+//         console.error("Failed to fetch data", Error);
+//       }
+//     );
+//   } else {
+//     var data = {
+//       "id": id,
+//       "star": "False",
+//     };
+//     console.log(data);
+//     $http({
+//       method: "POST",
+//       url: ip + 'api/starred/',
+//       data: data,
+//       withCredentials: true,
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//     }).then(
+//       function (Response) {
+//         console.log("Fetched Data", Response.data);
+
+//         showuncoloured(id);
+//       },
+//       function (Error) {
+//         console.error("Failed to fetch data", Error);
+//       }
+//     );
+//   }
+// }
+// $scope.showcolured1[id] = true;
+// function showcoloured(id) {
+//   console.log(id);
+//   $scope.showcolured1[id] = true;
+//   $scope.showuncolured1[id]  = false;
+// }
+
+// function showuncoloured(id) {
+//   console.log(id);
+//   $scope.showcolured1[id] = false;
+//   $scope.showuncolured1[id] = true;
+// }
 
 
   showccontents = function(){
@@ -702,6 +730,41 @@ function showuncoloured(id) {
 
     }
   },
+
+$scope.downloadFile = function (file_name) {
+  $http({
+    method: "GET",
+    url: ip + 'api/media/' + file_name,
+    responseType: 'arraybuffer', 
+  })
+  .then(
+    function (Response) {
+      console.log("Fetched", Response.data);
+      $scope.triggerFileDownload(Response.data, file_name);
+    },
+    function (Error) {
+      console.error("Failed to fetch data", Error);
+    }
+  );
+};
+
+$scope.triggerFileDownload = function (data, fileName) {
+  var blob = new Blob([data], { type: "application/octet-stream" });
+  var url = window.URL.createObjectURL(blob);
+
+  
+  var a = document.createElement("a");
+  a.style.display = "none";
+  a.href = url;
+  a.download = fileName;
+
+  document.body.appendChild(a);
+  a.click();
+
+  window.URL.revokeObjectURL(url);
+};
+
+
   $scope.Delete = function(id){
     console.log(id);
     $scope.Dlt = function(){
