@@ -17,7 +17,8 @@
             border-radius: 10px;
             margin: 5.5% auto;
             padding: 20px;
-            max-width: 30%;
+            max-width: 35%;
+            height: 30rem;
         }
 
         #Logo {
@@ -37,8 +38,9 @@
 
         #FName,
         #LName {
-            width: 100%;
-            margin-top: 20px;
+            width: 90%;
+            margin-top: 40px;
+            margin-left: 1.2rem;
         }
 
         #button {
@@ -46,15 +48,15 @@
             margin-top: 20px;
         }
 
-        @media (max-width: 768px) {
+        /* @media (max-width: 768px) {
             #main {
                 max-width: 80%;
             }
-        }
+        } */
 
-        @media (max-width: 576px) {
+        @media (max-width: 768px) {
             #main {
-                max-width: 85%;
+                max-width: 80%;
             }
 
             #FName,
@@ -94,23 +96,25 @@
         <div id="Email">
             <label style="font-size: 18px">to Continue to Google SkySync</label>
         </div>
+
         <div id="FName" class="input-group mb-3">
             <input
-                    style="margin-top: 2%"
-                    type="password"
-                    class="form-control"
-                    placeholder="Password"
-                    aria-label="Password"
-                    aria-describedby="basic-addon1"
-                    ng-model="password"
-                    required
+                style="margin-top: 2%"
+                type="{{ showPassword ? 'text' : 'password' }}"
+                class="form-control"
+                placeholder="Password"
+                aria-label="Password"
+                aria-describedby="basic-addon1"
+                ng-model="password"
+                required
             />
         </div>
-        <div style="margin-left: 8%">
-            <input type="checkbox" /> <label>Show Password</label>
+        <div style="margin-left: 5%">
+            <input type="checkbox" ng-model="showPassword" /> <label>Show Password</label>
         </div>
+        
 
-        <div style="display: flex; margin-left: 38px">
+        <div style="display: flex; margin-left: 1.8rem">
             <div>
                 <label ui-sref="Register" style="color: #4285f4; margin-top: 40%"
                 >Forgot password ?</label

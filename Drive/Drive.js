@@ -2,47 +2,39 @@ myApp.controller("DriveController", [
   "$scope",
   "$state",
   "$http",
-  "$sce",
-  function ($scope, $state, $http , $sce) {
+  "$rootScope",
+  function ($scope, $state, $http , $rootScope  ) {
     
+   
+   
 
-    // $http({
-    //   method: "GET",
-    //   url: ip + 'api/profile_pic/',
-    //   withCredentials: true,
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // }).then(
-    //   function (Response) {
-    //     console.log("User Data", Response.data);
-    //     $scope.Users = Response.data;
-             
-    //     // 'https://ui-avatars.com/api/?background=random&name=Keshav+Sharma'
-        
-    //       $http({
-    //         method: "GET",
-    //         url: 'https://ui-avatars.com/',
-    //         withCredentials: true,
-    //         headers: {
-    //           "Content-Type": "application/json",
-    //         },
-    //       }).then(
-    //         function (Response) {
-    //           console.log("Fetched Data", Response.data);
-    //           $scope.images = Response.data;
-    //           console.log(images);
-    //         },
-    //         function (Error) {
-    //           console.error("Failed to fetch data", Error);
-    //         }
-    //       );
+$rootScope.$on('$locationChangeStart', function (event) {
+  event.preventDefault();
+});
 
-    //   },
-    //   function (Error) {
-    //     console.error("Failed to fetch data", Error);
-    //   }
-    // )
+
+
+    $scope.logout = function () {
+       $state.go("Home");
+    };
+
+
+    $http({
+      method: "GET",
+      url: ip + 'api/profile_pic/',
+      withCredentials: true,
+    }).then(
+      function (Response) {
+        console.log("User Data", Response.data);
+        $scope.Users = Response.data;
+        console.log("Fetched",$scope.Users);
+      },
+      function (Error) {
+        console.error("Failed to fetch data", Error);
+      }
+    );
+
+
     
 
     $scope.ok = function(){
@@ -51,14 +43,87 @@ myApp.controller("DriveController", [
       
     }
 
+var id =""
+
     $scope.folder = function (id, file_name, folder_name) {
-      console.log(id, file_name, folder_name);
+      id=id
+      console.log("id" , id);
+      console.log("folder" , folder_name);
+      console.log("file" , file_name);
     
-      if (file_name == null) {
+      if (file_name == null && id) {
         var folder_name = folder_name;
         var data = { id: id };
         console.log(data);
+
+
+        $scope.createFolder123 = function () {
+          console.log(id)
+          var folderName = prompt('Enter folder name:');
+          if (folderName) {
+             
+              id = id;
+              
+            var data = {
+                   new_folder : folderName,
+                   parent_id : id
+            }
+
+             console.log(data);
+              $http({
+                method: "POST",
+                url: ip + 'api/create_folder/',
+                withCredentials: true,
+                data: data,
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              }).then(
+                function (Response) {
+                  console.log(Response);
+                        Swal.fire('New Folder Created')
+      
+                },
+                function (Error) {
+                  console.error("Failed to fetch data", Error);
+                }
+              );
+          }
+      };
+
+
+
+      $scope.selectFile123 = function () {
+        console.log(id)
+        var fileInput = document.getElementById("fileInput");
+        var file = fileInput.files[0];
+        var formData = new FormData();
+        formData.append('file', file);
+        formData.append('folder', id);
+        console.log(formData);
     
+        $http({
+            method: "POST",
+            url: ip + "/api/file_upload/",
+            data: formData,
+            withCredentials: true,
+            headers: { 'Content-Type': undefined },
+           
+        })
+        .then(
+            function (response) {
+                console.log("response", response);
+                Swal.fire('File Sent');  
+                fileInput.value = '';
+            },
+            function (error) {
+                console.error("error", error);
+                Swal.fire('Error In Uploading File');
+            }
+        );
+    };
+  
+           
         $http({
           method: "POST",
           url: ip + 'api/inside_folder/',
@@ -74,11 +139,15 @@ myApp.controller("DriveController", [
             console.log($scope.insidefolder);
             $scope.showdrivecontent = false;
             $scope.shownestedcontent = true;
+
           },
           function (Error) {
             console.error("Failed to fetch data", Error);
           }
         );
+
+    
+
       } else {
         var file_name = file_name;
 
@@ -99,7 +168,7 @@ myApp.controller("DriveController", [
             var url = URL.createObjectURL(blob);
 
             $scope.pdfs = url;
-            openpdf();
+            open();
           },
           function (error) {
             console.log("Data not fetched", error);
@@ -110,7 +179,7 @@ myApp.controller("DriveController", [
     };
     
 
-     openpdf = function () {
+     open = function () {
       document.getElementById("photo").style.display = "block";
   };
   
@@ -277,73 +346,73 @@ myApp.controller("DriveController", [
 
 
 
-// $scope.showuncolured1 = {}; 
-// $scope.showcolured1 = {};  
+$scope.showuncolured1 = {}; 
+$scope.showcolured1 = {};  
 
-// $scope.handleclick = function(id, starred) {
-//   console.log(id, starred);
+$scope.handleClick = function(id, starred) {
+  console.log(id, starred);
 
-//   if (starred === false) {
-//     var data = {
-//       "id": id,
-//       "star": "true",
-//     };
-//     console.log(data);
-//     $http({
-//       method: "POST",
-//       url: ip + 'api/starred/',
-//       data: data,
-//       withCredentials: true,
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     }).then(
-//       function (Response) {
-//         console.log("Fetched Data", Response.data);
-//         showcoloured(id);
-//       },
-//       function (Error) {
-//         console.error("Failed to fetch data", Error);
-//       }
-//     );
-//   } else {
-//     var data = {
-//       "id": id,
-//       "star": "False",
-//     };
-//     console.log(data);
-//     $http({
-//       method: "POST",
-//       url: ip + 'api/starred/',
-//       data: data,
-//       withCredentials: true,
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     }).then(
-//       function (Response) {
-//         console.log("Fetched Data", Response.data);
+  if (starred === false) {
+    var data = {
+      "id": id,
+      "star": "true",
+    };
+    console.log(data);
+    $http({
+      method: "POST",
+      url: ip + 'api/starred/',
+      data: data,
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(
+      function (Response) {
+        console.log("Fetched Data", Response.data);
+        showcoloured(id);
+      },
+      function (Error) {
+        console.error("Failed to fetch data", Error);
+      }
+    );
+  } else {
+    var data = {
+      "id": id,
+      "star": "False",
+    };
+    console.log(data);
+    $http({
+      method: "POST",
+      url: ip + 'api/starred/',
+      data: data,
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(
+      function (Response) {
+        console.log("Fetched Data", Response.data);
 
-//         showuncoloured(id);
-//       },
-//       function (Error) {
-//         console.error("Failed to fetch data", Error);
-//       }
-//     );
-//   }
-// }
+        showuncoloured(id);
+      },
+      function (Error) {
+        console.error("Failed to fetch data", Error);
+      }
+    );
+  }
+}
 // $scope.showcolured1[id] = true;
-// function showcoloured(id) {
-//   console.log(id);
-//   $scope.showcolured1[id] = true;
-//   $scope.showuncolured1[id]  = false;
-// }
+function showcoloured(id) {
+  console.log(id);
+  $scope.showColoured1[id] = true;
+  $scope.showUncoloured1[id]  = false;
+}
 
-// function showuncoloured(id) {
-//   console.log(id);
-//   $scope.showcolured1[id] = false;
-//   $scope.showuncolured1[id] = true;
-// }
+function showuncoloured(id) {
+  console.log(id);
+  $scope.showcolured1[id] = false;
+  $scope.showuncolured1[id] = true;
+}
 
 
   showccontents = function(){
@@ -355,6 +424,7 @@ myApp.controller("DriveController", [
         $scope.showspamcontent = false;
         $scope.showbincontent = false;
         $scope.showstoragecontent = false;
+        $scope.shownestedcontent = false;
     } ;
 
 
@@ -367,6 +437,7 @@ myApp.controller("DriveController", [
       $scope.showspamcontent = false;
       $scope.showbincontent = false;
       $scope.showstoragecontent = false;
+      $scope.shownestedcontent = false;
 
       $http({
         method: "GET",
@@ -398,6 +469,7 @@ myApp.controller("DriveController", [
       $scope.showspamcontent = false;
       $scope.showbincontent = false;
       $scope.showstoragecontent = false;
+      $scope.shownestedcontent = false;
 
       $http({
         method: "GET",
@@ -427,6 +499,7 @@ myApp.controller("DriveController", [
       $scope.showspamcontent = false;
       $scope.showbincontent = false;
       $scope.showstoragecontent = false;
+      $scope.shownestedcontent = false;
 
       $http({
         method: "GET",
@@ -456,6 +529,7 @@ myApp.controller("DriveController", [
       $scope.showspamcontent = true;
       $scope.showbincontent = false;
       $scope.showstoragecontent = false;
+      $scope.shownestedcontent = false;
 
       
     } ;
@@ -469,6 +543,7 @@ myApp.controller("DriveController", [
       $scope.showspamcontent = false;
       $scope.showbincontent = true;
       $scope.showstoragecontent = false;
+      $scope.shownestedcontent = false;
 
       $http({
         method: "GET",
@@ -502,6 +577,7 @@ myApp.controller("DriveController", [
     $scope.showspamcontent = false;
     $scope.showbincontent = false;
     $scope.showstoragecontent = true;
+    $scope.shownestedcontent = false;
 
     $http({
       method: "GET",
@@ -513,9 +589,47 @@ myApp.controller("DriveController", [
     }).then(
       function (Response) {
         $scope.storage = Response.data;
+        console.log($scope.storage);
         
-        $scope.width = '700px';
-        $scope.bgColor = 'rgb(189, 189, 49)';
+        var usedStorage = parseFloat($scope.storage);
+        var totalStorage = 5 * 1024; 
+        var storagePercentage = (usedStorage / totalStorage) * 100;
+
+       
+        $scope.width = storagePercentage + '%';
+        $scope.bgColor = ColorPercentage(storagePercentage);
+
+        
+        function ColorPercentage(percentage) {
+            if (percentage < 25) {
+                return 'green'; 
+            } else if (percentage < 75) {
+                return 'yellow'; 
+            } else {
+                return 'red'; 
+            }
+        }
+        
+        
+      },
+      function (Error) {
+        console.error("Failed to fetch data", Error);
+      }
+    );
+
+    $http({
+      method: "GET",
+      url: ip + 'api/storage_usage/',
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(
+      function (Response) {
+        $scope.usage = Response.data;
+        console.log($scope.usage);
+        
+
         
       },
       function (Error) {
@@ -575,30 +689,36 @@ myApp.controller("DriveController", [
         );
     };
     
+
     $scope.sendFile = function () {
-        var file = document.getElementById("file").files[0];
-        var formData = new FormData();
-        formData.append('file', file);
-    
-        $http({
-            method: "POST",
-            url: ip + "/api/file_upload/",
-            data: formData,
-            headers: { 'Content-Type': undefined }, 
-            withCredentials: true,
-        })
-        .then(
-            function (response) {
-                console.log("response", response);
-                Swal.fire('File Sent');
-                $scope.closeNewFolderModal();
-            },
-            function (error) {
-                console.error("error", error);
-                Swal.fire('Error In Uploading File');
-            }
-        );
-    };
+      var fileInput = document.getElementById("file");
+      var file = fileInput.files[0];
+      var formData = new FormData();
+      formData.append('file', file);
+  
+      $http({
+          method: "POST",
+          url: ip + "/api/file_upload/",
+          data: formData,
+          headers: { 'Content-Type': undefined },
+          withCredentials: true,
+      })
+      .then(
+          function (response) {
+              console.log("response", response);
+              Swal.fire('File Sent');
+              $scope.closeNewFolderModal();
+  
+              
+              fileInput.value = '';
+          },
+          function (error) {
+              console.error("error", error);
+              Swal.fire('Error In Uploading File');
+          }
+      );
+  };
+  
     
    $scope.RENAMED = function(id){
     $scope.rename = function(){
@@ -622,6 +742,7 @@ myApp.controller("DriveController", [
       },
       function (error) {
         console.error("error", error);
+        Swal.fire('Error in Renaming ')
     }
     )
    }},
@@ -692,6 +813,7 @@ myApp.controller("DriveController", [
           function(response){
             console.log("response",response.data)
             $scope.recieved = response.data;
+            Swal.fire('File Shared');
             $scope.closeshare();
 
           },
@@ -731,6 +853,25 @@ myApp.controller("DriveController", [
     }
   },
 
+
+   $scope.emptybin = function(){
+    $http({
+      method:"POST",
+      url: ip + 'api/empty_bin',
+      withCredentials:true,
+    })
+    .then(
+      function(response){
+        console.log("Response",response);
+      },
+      function(error){
+        console.log("Error",error)
+      }
+    )
+   }
+
+
+
 $scope.downloadFile = function (file_name) {
   $http({
     method: "GET",
@@ -740,7 +881,7 @@ $scope.downloadFile = function (file_name) {
   .then(
     function (Response) {
       console.log("Fetched", Response.data);
-      $scope.triggerFileDownload(Response.data, file_name);
+      $scope.Download(Response.data, file_name);
     },
     function (Error) {
       console.error("Failed to fetch data", Error);
@@ -748,12 +889,12 @@ $scope.downloadFile = function (file_name) {
   );
 };
 
-$scope.triggerFileDownload = function (data, fileName) {
+$scope.Download = function (data, fileName) {
   var blob = new Blob([data], { type: "application/octet-stream" });
   var url = window.URL.createObjectURL(blob);
 
   
-  var a = document.createElement("a");
+  var a = document.createElement("a"); 
   a.style.display = "none";
   a.href = url;
   a.download = fileName;

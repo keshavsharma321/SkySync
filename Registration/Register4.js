@@ -2,9 +2,11 @@ myApp.controller('Registration4Controller', function($scope,$state ,$http, Regis
     $scope.verify = function() {
       if($scope.recoveryemail== null || RegistrationService.getusername() ==null ){Swal.fire('Please enter all valid details')}else{
   var data = {
+
        username : RegistrationService.getusername(),
        email :  $scope.recoveryemail }
       console.log(data)
+     
       $http({
         method: "POST",
         url: ip + 'api/verify/',
@@ -13,9 +15,10 @@ myApp.controller('Registration4Controller', function($scope,$state ,$http, Regis
       }).then(
         function (response) {
           console.log("Response", response.data);
+          Swal.fire('Enter the code you recieved on your mail')
         },
         function (error) {
-          console.error("Login failed", error);
+          console.error("Error", error);
         })
     }};
     $scope.code = function(){

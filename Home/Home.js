@@ -51,9 +51,9 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise("/Home");
 });
 
-var ip =  "https://10.21.84.138:8000/";
+var ip = "https://10.21.84.12:8000/";
 
-myApp.service('UserDataService', function () {
+myApp.service("UserDataService", function () {
   var userData = {};
 
   return {
@@ -75,7 +75,7 @@ myApp.service('UserDataService', function () {
   };
 });
 
-myApp.service('RegistrationService', function() {
+myApp.service("RegistrationService", function () {
   var userData = {};
 
   return {
@@ -155,9 +155,7 @@ myApp.service('RegistrationService', function() {
       userData = {};
     },
   };
-
 });
-
 
 myApp.controller("HomeController", [
   "$scope",

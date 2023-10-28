@@ -111,10 +111,11 @@
         <div id="Enter">
             <label style="font-size: 18px">Enter Your Name</label>
         </div>
-        <div style="display: flex;">
-            <div style="width: 30%; margin-top: 9%;">
-                <select id="titledropdown" ng-model="title" ng-options="title.option as title.option for title in titles">
-                    <option value="{{title.option}}">Select Title</option>
+        <div style="display: flex; width: 83.5%; margin-left: 2.2rem;">
+            <div style="width: 25%; margin-top: 9%;">
+                <select style="height: 2.3rem;" id="titledropdown" ng-model="title" ng-options="title.option as title.option for title in titles">
+                    <option value="">Select Title</option>
+                     <option value="{{title.option}}">Select Title</option>
                 </select>
             </div>
             <div id="FName" class="input-group mb-3">
