@@ -7,9 +7,6 @@ myApp.controller("DriveController", [
    
 
     
-    // $rootScope.$on("$locationChangeStart", function (event) {
-    //   event.preventDefault();
-    // });    
     
 
  
